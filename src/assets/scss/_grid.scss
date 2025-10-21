@@ -1,0 +1,246 @@
+@use '_variables.scss';
+
+$screen-width-small: 350px;
+$screen-width-large: 700px;
+$screen-width-max: 1050px;
+
+$start: 1;
+$end: 12;
+
+$_cui_field_components: 'cui-field',
+    'cui-text',
+    'cui-textarea',
+    'cui-date',
+    'cui-listbox',
+    'cui-radio-group',
+    'cui-checkbox',
+    'cui-check-group',
+    'cui-select';
+
+.grid {
+    display: block;
+    width: 100%;
+
+    .grid {
+        margin-bottom: 0px;
+
+        .row {
+            .col:first-of-type {
+                padding-left: 0;
+            }
+
+            .col:last-of-type {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        &.scr-min-start {
+            justify-content: flex-start;
+        }
+
+        &.scr-min-center {
+            justify-content: center;
+        }
+
+        &.scr-min-end {
+            justify-content: flex-end;
+        }
+
+        &.scr-min-top {
+            align-items: flex-start;
+        }
+
+        &.scr-min-mid {
+            align-items: center;
+        }
+
+        &.scr-min-bot {
+            align-items: flex-end;
+        }
+
+        .col {
+            display: flex;
+            flex: 1 0 0px;
+            flex-basis: 100%;
+            box-sizing: border-box;
+
+            @for $i from $start through $end {
+                &.scr-min-#{$i} {
+                    flex-basis: calc(calc(#{$i}/12) * 100%);
+                    max-width: calc(calc(#{$i}/12) * 100%);
+
+                    #{$_cui_field_components} {
+                        &::part(label-wrapper) {
+                            flex-basis: auto;
+                            min-width: 0;
+                        }
+                    }
+                }
+            }
+
+            @for $j from $start through $end {
+                &.offset-#{$j} {
+                    margin-left: calc(calc(#{$j}/12) * 100%);
+                }
+            }
+
+            &.align-end {
+                justify-content: flex-end;
+            }
+
+            &.align-center {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $screen-width-small) {
+    .grid .row {
+        &.scr-sm-start {
+            justify-content: flex-start;
+        }
+
+        &.scr-sm-center {
+            justify-content: center;
+        }
+
+        &.scr-sm-end {
+            justify-content: flex-end;
+        }
+
+        &.scr-sm-top {
+            align-items: flex-start;
+        }
+
+        &.scr-sm-mid {
+            align-items: center;
+        }
+
+        &.scr-sm-bot {
+            align-items: flex-end;
+        }
+
+        .col {
+            max-width: 100%;
+            flex-basis: 0px;
+
+            @for $i from $start through $end {
+                &.scr-sm-#{$i} {
+                    flex-basis: calc(calc(#{$i}/12) * 100%);
+                    max-width: calc(calc(#{$i}/12) * 100%);
+                }
+            }
+
+            &.align-end {
+                justify-content: flex-end;
+            }
+
+            &.align-center {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $screen-width-large) {
+    .grid .row {
+        &.scr-lg-start {
+            justify-content: flex-start;
+        }
+
+        &.scr-lg-center {
+            justify-content: center;
+        }
+
+        &.scr-lg-end {
+            justify-content: flex-end;
+        }
+
+        &.scr-lg-top {
+            align-items: flex-start;
+        }
+
+        &.scr-lg-mid {
+            align-items: center;
+        }
+
+        &.scr-lg-bot {
+            align-items: flex-end;
+        }
+
+        .col {
+            max-width: 100%;
+            flex-basis: 0px;
+
+            @for $i from $start through $end {
+                &.scr-lg-#{$i} {
+                    flex-basis: calc(calc(#{$i}/12) * 100%);
+                    max-width: calc(calc(#{$i}/12) * 100%);
+                }
+            }
+
+            &.align-end {
+                justify-content: flex-end;
+            }
+
+            &.align-center {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $screen-width-max) {
+    .grid .row {
+        &.scr-max-start {
+            justify-content: flex-start;
+        }
+
+        &.scr-max-center {
+            justify-content: center;
+        }
+
+        &.scr-max-end {
+            justify-content: flex-end;
+        }
+
+        &.scr-max-top {
+            align-items: flex-start;
+        }
+
+        &.scr-max-mid {
+            align-items: center;
+        }
+
+        &.scr-max-bot {
+            align-items: flex-end;
+        }
+
+        .col {
+            max-width: 100%;
+            flex-basis: 0px;
+
+            @for $i from $start through $end {
+                &.scr-max-#{$i} {
+                    flex-basis: calc(calc(#{$i}/12) * 100%);
+                    max-width: calc(calc(#{$i}/12) * 100%);
+                }
+            }
+
+            &.align-end {
+                justify-content: flex-end;
+            }
+
+            &.align-center {
+                justify-content: center;
+            }
+        }
+    }
+}

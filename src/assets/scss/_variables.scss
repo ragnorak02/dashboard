@@ -1,0 +1,58 @@
+// Generic Colors
+$black: #000;
+$charcoal: #333;
+$white: #FFF;
+
+// Style Guild Colors
+$defaultBackground: #F6F6F6;
+$activeRegionBackground: $white;
+$contextBackground: #EDEDED;
+$contextBorderColor: #8C8C8C;
+$defaultFooterBackground: #7FA9AE;
+
+// Page
+$pageTitleTextColor: #A1A1A1;
+$pageTitleIconColor: #A1A1A1;
+$pageTextColor: $charcoal;
+$pageHoverColor: #787878;
+
+// Sections
+$sectionBackground: $activeRegionBackground;
+$sectionHeaderBorderColor: #CCC;
+$sectionHeaderButtonHoverColor: #CCC;
+$sectionHeaderTextColor: #A1A1A1;
+$sectionHeaderIconColor: #A1A1A1;
+$sectionShadowBoxColor: rgba(0, 0, 0, 0.2);
+$sectionShadowBoxX: 0;
+$sectionShadowBoxY: 1px;
+$sectionShadowBoxBlur: 2px;
+
+// Buttons
+$buttonBorderRadius: 5px;
+$primaryButtonBackground: #397DBB;
+$primaryButtonTextColor: #FFF;
+$secondaryButtonBackground: #F6F3F4;
+$secondaryButtonBorderColor: #A1A1A1;
+$secondaryButtonTextColor: #333;
+
+// Table 
+$tableBorderColor: #A1A1A1;
+$tableHeaderBackground: #CCCCCC;
+$tableBodyBackgroundColorEven: #FFF;
+$tableBodyBackgroundColorOdd: #EBEBEB;
+$tableBodyBackgroundColorEditable: #FFF;
+$tableBodyBackgroundColorUneditable: #EBEBEB;
+$tableBodyTextColor: #333;
+
+// Inputs
+$inputBorderColor: #8C8C8C;
+$inputBorderRadius: 5px;
+$inputLabelTextColor: #333333;
+
+// Menus
+$menuSeperatorColor: #DDD;
+$menuHeaderColor: #A1A1A1;
+
+// Messaging Colors
+$errorColor: #F06359;
+$successColor: #339966;

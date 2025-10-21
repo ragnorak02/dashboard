@@ -1,0 +1,6 @@
+{
+    "name": "Example Base",
+    "mode": "spa",
+    "src": "src",
+    "entry": "spa.js"
+}

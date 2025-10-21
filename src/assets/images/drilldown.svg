@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+   class="ionicon"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg137"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs141" />
+  <rect
+     x="96"
+     y="48"
+     width="320"
+     height="416"
+     rx="48"
+     ry="48"
+     fill="none"
+     stroke="currentColor"
+     stroke-linejoin="round"
+     stroke-width="32"
+     id="rect133" />
+  <path
+     fill="none"
+     stroke="currentColor"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="32"
+     d="M176 128h160M176 208h160M176 288h80"
+     id="path135" />
+  <g
+     id="g3082">
+    <g
+       id="g3086"
+       transform="matrix(0.66006909,0,0,0.59971595,15.704085,138.7955)">
+      <path
+         fill="none"
+         stroke="currentColor"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         stroke-width="48"
+         d="m 352.34903,392.37086 143.99999,144 144,-144 m -144,124 v -292"
+         id="path2-4"
+         style="stroke:#ffffff;stroke-width:162.478;stroke-dasharray:none" />
+      <path
+         fill="none"
+         stroke="currentColor"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         stroke-width="48"
+         d="m 351.85049,392.86939 143.99999,144 144,-144 m -144,124 v -292"
+         id="path2-4-2"
+         style="stroke:#000000" />
+    </g>
+  </g>
+</svg>

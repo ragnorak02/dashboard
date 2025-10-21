@@ -1,0 +1,24 @@
+.timer {
+    display: flex;
+    width: auto;
+    height: 2vh;
+    //margin-top dependent on borders for header and footer
+    margin-top: 97.5vh;
+    justify-content: flex-end;
+
+}
+
+
+progress{
+    // -webkit-appearance: none;
+    width: 100%;
+    // height: 2vh;
+    background-color: blue;
+}
+progress[value]::-webkit-progress-value{
+    background-color: #154973;
+}
+::-webkit-progress-bar {
+    background-color: #D6CEE9 ;
+    height: 2.5vh;
+  }

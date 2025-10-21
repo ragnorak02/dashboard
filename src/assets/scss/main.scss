@@ -1,0 +1,230 @@
+@use '_variables' as *;
+@use '_fonts.scss';
+@use '_grid.scss';
+
+
+// Global Variables
+:root {
+    // Generic Page variables
+    --page-font: #{"'Open Sans', Arial, sans-serif"};
+    --page-text-color: #{$pageTextColor};
+    --page-nav-text-color: #{$primaryButtonBackground};
+    --page-title-color: #{$pageTitleTextColor};
+    --page-title-icon-color: #{$pageTitleIconColor};
+    --page-background-color: #{$defaultBackground};
+    --standard-font-size: 14px;
+
+    // cui-field overrides!
+    --cui-field-label-flex-width: 150px;
+    --cui-field-label-color: #{$inputLabelTextColor};
+
+    // Header Icon
+    --page-icon-fill-color: #{$pageTitleIconColor};
+    --page-icon-transparent-color: #{$defaultBackground};
+    --page-icon-hover-color: #{$pageHoverColor};
+
+    // Menu Seperator
+    --menu-seperator-color: #{$menuSeperatorColor};
+    --menu-header-color: #818181;
+
+    // Message Colors
+    --error-color: #bd4e4e;
+    --success-color: #43b17a;
+
+    // Toast Messages
+    --cui-toast-success-background: #43b17a;
+    --cui-toast-success-border: transparent;
+    --cui-toast-success-timer-border: rgba(255, 255, 255, 0.75);
+
+    --cui-toast-error-background: #bd4e4e;
+    --cui-toast-error-border: transparent;
+    --cui-toast-error-timer-border: rgba(255, 255, 255, 0.75);
+
+    --cui-toast-warn-background: #ffeb95;
+    --cui-toast-warn-border: transparent;
+    --cui-toast-warn-timer-border: rgba(0, 0, 0, 0.75);
+
+    --cui-toast-info-background: #397dbb;
+    --cui-toast-info-border: transparent;
+    --cui-toast-info-timer-border: rgba(255, 255, 255, 0.75);
+
+    // Special Sections
+    // ======================================================
+    // Parcels
+
+    --context-header-background-color: #{$contextBackground};
+    --context-header-border-color: #{$contextBorderColor};
+
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    background: $defaultBackground;
+    font-family: 'Open Sans', Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    
+    #app-root {
+        display: flow-root;
+        height: 100%;
+    }
+
+    div[data-rc="sc"] {
+        height: 100%;
+    }
+
+    div[data-rc="main-lvc"],
+    div[data-rc="s-vc"],
+    div[data-rc="s-tf"],
+    .app-main-template,
+    main,
+    .page,
+    .app-main-region,
+    #app-screen-container,
+    .slide-show-wrapper {
+        height: 100%;
+        width: 100%;
+    }
+
+    cui-slide-show {
+        position: relative;
+    }
+
+    cui-slide {
+
+        position: absolute;
+        top: 0;
+        left: 0px;
+        width: 100vw;
+        height: calc(100vh - 3em);
+
+        &.uploading-slide {
+            div {
+               display: flex;
+               align-items: center; 
+            }
+        }
+
+        &::part(header) {
+            background: #0b5d66;
+            box-shadow: 1px 2px 3px #333;
+            border-radius: 0 20px 20px 0;
+            color: #FFF;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 0.25em 1em;
+            line-height: 1.8;
+            position:relative;
+            left: -1em;
+        }
+
+        &::part(slide-title) {
+            border-bottom: 0;
+        }
+
+        cui-chart-bar {
+            &::part(chart-header) {
+                padding: 0;
+            }
+        }
+
+        cui-chart-line {
+            &::part(axis-text) {
+                font-size: 16px;
+            }
+        }
+
+        cui-counter {
+
+            &::part(counter-header) {
+                padding: 0;
+            }
+
+        }
+
+        .negavite-state {
+            header {
+                .title {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+
+                .subtitle {
+                    font-size: 14px;
+                    font-style: italic ;
+                }
+                
+                .title,
+                .subtitle {
+                    text-align: center
+                }
+            }
+
+            p {
+                color: #A1A1A1;
+                font-size: 28px;
+                /* 100 = view port width, as 1vw = 1/100th of that
+                   So if the container is 50% of view port (as here)
+                   then factor that into how you want it to size.
+                   Let's say you like 5vw if it were the whole width,
+                   then for this container, size it at 2.5vw (5 * .5 [i.e. 50%])
+                */
+                font-size: 3.5vw; 
+                text-align: center
+            }
+        }
+
+    }
+
+
+}
+
+@media only screen and (min-width: 3700px) {
+
+    body {
+        cui-slide {
+    
+            &::part(header) {
+                font-size: 32px;
+                left: -23px;
+            }
+
+            cui-counter {
+
+                &::part(title) {
+                    font-size: 50px;
+                }
+
+                &::part(sub-title) {
+                    font-size: 30px;
+                }
+    
+            }
+
+            cui-chart-line {
+
+                .chart-title {
+                    font-size: 50px;
+                }
+
+            }
+
+        }
+    }
+
+}
