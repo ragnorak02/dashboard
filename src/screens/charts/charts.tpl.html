@@ -1,0 +1,139 @@
+<h1>Charts</h1>
+
+<!-- Pie Chart -->
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-pie" 
+            charttitle="Wholly Exempt Distribution" 
+            type="pie">
+        </cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-pie-h1" 
+            charttitle="Wholly Exempt Distribution" 
+            type="pie">
+        </cui-chart>
+    </div>
+    <div class="col">
+        <cui-chart id="demo-doughnut" 
+            charttitle="Wholly Exempt Distribution" 
+            type="doughnut">
+        </cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-pie-h2" 
+            charttitle="Height/Width Test - 250" 
+            type="pie" height="250" width="250">
+        </cui-chart>
+    </div>
+</div>
+
+<!-- Line -->
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-line-month" 
+            charttitle="Stock Values"
+            type="line" subtype="time" xaxislabel="Value" yaxislabel="Date"></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-line-month-h1" 
+            charttitle="Small No grid"
+            type="line" subtype="time" yaxistickcount="5" xaxislabel="Value"  xAxisTickCount="3" yaxislabel="Date"  xAxisTickCount="3" xaxistickformat="%m/%Y"></cui-chart>
+    </div>
+    <div class="col">
+        <cui-chart id="demo-line-month-h2" 
+            charttitle="Small with grid"
+            type="line" subtype="time" xaxislabel="Value"  xAxisTickCount="3" yaxislabel="Date" xaxistickformat="%m/%Y" axisgrid></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-line-month-size" 
+            charttitle="Set Height (1000px) and Width (auto)"
+            type="line" subtype="time" xaxislabel="Value" yaxislabel="Date" height="1000"></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-line-month-size2" 
+            charttitle="Multiple Lines"
+            type="line" subtype="time" xaxislabel="Value" yaxislabel="Date" colors="#fb8072,#bc80bd"></cui-chart>
+    </div>
+</div>
+
+<!-- Horizontal -->
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-horizontal-bar" 
+            charttitle="Distribution of Parcels by Property Class"
+            type="hbar"></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-horizontal-bar-h1" 
+            charttitle="Distribution of Parcels by Property Class"
+            type="hbar" xaxisgrid></cui-chart>
+    </div>
+    <div class="col">
+        <cui-chart id="demo-horizontal-bar-h2" 
+            charttitle="Distribution of Parcels by Property Class"
+            type="hbar" xAxisTickCount="0"></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-horizontal-bar-h3" 
+            charttitle="HTML Attribute color range"
+            type="hbar" colorrange="{'0':'#90b354','5000':'#f5f111','10000':'#e3433b'}"></cui-chart>
+    </div>
+    <div class="col">
+        <cui-chart id="demo-horizontal-bar-h4" 
+            charttitle="Set State colore range"
+            type="hbar"></cui-chart>
+    </div>
+</div>
+
+
+<!-- Vertical -->
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-vertical-bar" 
+            charttitle="Distribution of Parcels by Property Class"
+            chartsubtitle="Roll year: 2023"
+            type="vbar" yaxisgrid></cui-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <cui-chart id="demo-vertical-bar-h1" 
+            charttitle="Distribution of Parcels by Property Class"
+            chartsubtitle="Roll year: 2023"
+            type="vbar" disabletable></cui-chart>
+    </div>
+    <div class="col">
+        <cui-chart id="demo-vertical-bar-h2" 
+            charttitle="Distribution of Parcels by Property Class"
+            chartsubtitle="Roll year: 2023"
+            type="vbar" yAxisTickCount="3"></cui-chart>
+    </div>
+</div>
+
+<slide-show-timer></slide-show-timer>
