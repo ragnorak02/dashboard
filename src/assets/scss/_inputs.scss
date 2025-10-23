@@ -1,0 +1,1090 @@
+@use "sass:selector";
+@use '_variables.scss';
+
+$_cui_field_components: 'cui-field',
+    'cui-text',
+    'cui-textarea',
+    'cui-date',
+    'cui-listbox',
+    'cui-radio-group',
+    'cui-checkbox',
+    'cui-check-group';
+
+$field_data_contents: selector.append($_cui_field_components, '::part(data-contents)');
+
+#{$field_data_contents} {
+    display: flex;
+}
+
+input,
+select {
+    background: #fff;
+    font-size: var(--standard-font-size);
+    font-weight: 600;
+    padding: 2px 5px;
+    height: 26px;
+
+    &[type="checkbox"] {
+        height: 15px;
+        min-height: auto;
+        max-height: auto;
+        width: 15px;
+    }
+}
+
+textarea {
+    background: #fff;
+    font-size: var(--standard-font-size);
+    font-weight: 600;
+    padding: 6px 5px 2px;
+    width: 100%;
+}
+
+input,
+select,
+textarea {
+    border: 1px solid variables.$inputBorderColor;
+    border-radius: variables.$inputBorderRadius;
+    box-sizing: border-box;
+    min-height: 33px;
+
+    &:focus {
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        outline: 0;
+    }
+
+}
+
+#{$_cui_field_components} {
+    display: block;
+    margin-bottom: 10px;
+}
+
+cui-input-group {
+    margin-bottom: 10px;
+
+    cui-date,
+    cui-text {
+        margin-bottom: 0px;
+    }
+}
+
+cui-text,
+cui-textarea,
+cui-formpill,
+cui-listbox,
+cui-date {
+
+    &[required] {
+
+        label {
+            position: relative;
+
+            &::after {
+                content: "*";
+                display: inline-block;
+                font-size: 0.75rem;
+                color: var(--error-color);
+                position: absolute;
+                right: -0.675rem;
+            }
+
+        }
+
+    }
+
+}
+
+cui-checkbox[required]::part(label-boolean-wrapper) {
+    display: inline-flex;
+
+    &::after {
+        content: "*";
+        display: inline-block;
+        font-size: 0.75rem;
+        color: var(--error-color);
+        position: relative;
+        right: -0.3rem;
+    }
+}
+
+cui-radio-group,
+cui-check-group {
+
+    &[required] {
+
+        span[slot="labelContents"] {
+            position: relative;
+
+            &::after {
+                content: "*";
+                display: inline-block;
+                font-size: 0.75rem;
+                color: var(--error-color);
+                position: absolute;
+                right: -0.675rem;
+            }
+
+        }
+
+    }
+
+}
+
+cui-file-upload {
+    div[slot="dataContents"] {
+        margin-bottom: 10px;
+        span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: end;
+            // margin-left: 15px;
+            text-wrap: nowrap;
+
+            button.remove {
+                margin: 0;
+                margin-left: 10px;
+                padding: 0 5px;
+
+                cui-icon {
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+
+        .progress{
+            border-bottom-width: 5px;
+            border-bottom-style: solid;
+            border-bottom-color: #4CAF50;
+            margin-top: 2px;
+            border-radius: 10px;
+            width: 0px;
+        }
+    }
+
+    div[slot="dataContents"]+div[slot="dataContents"] {
+        margin-top: 10px;
+    }
+
+
+    &::part(data-wrapper) {
+        margin-left: 10px;
+        padding-right: 5px;
+    }
+
+    button[slot="controls"] {
+        max-width: 150px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        background-color: #397dbb;
+        color: #fff;
+        cursor: pointer;
+        border: 1px solid #a1a1a1;
+        border-radius: 5px;
+    }
+
+    &.multi {
+        span[slot="dataContents"]:nth-last-child(1) {
+            margin-bottom: 10px;
+        }
+
+        &::part(data-contents) {
+            display: flex;
+            flex-direction: column;
+
+        }
+    }
+    cui-message-list{
+        width: 100%;
+    }
+}
+
+cui-textarea {
+    width: 100%;
+}
+
+cui-listbox {
+
+    cui-button {
+
+        button {
+            margin: 0;
+        }
+
+    }
+
+    &::part(outer-wrapper) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &::part(data-wrapper) {
+        display: flex;
+    }
+
+    &::part(control-container) {
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 7px;
+    }
+
+    &::part(decorator-container){
+        align-self: center;
+        display: flex;
+    }
+    
+    &::part(listbox-outer-wrapper) {
+        align-items: flex-end;
+    }
+
+    &::part(psuedo-input) {
+        border: 1px solid variables.$inputBorderColor;
+        border-radius: variables.$inputBorderRadius;
+        min-height: 33px;
+
+        &:focus {
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            outline: 0;
+        }
+    }
+
+    &::part(listbox-arrow):before {
+        top: 1px;
+    }
+
+    &::part(hidden-select) {
+        padding: 0 15px;
+    }
+
+    &::part(hidden-select multiple) {
+        padding: 0 15px 0 25px;
+    }
+
+    &::part(listbox-code-desc-code) {
+        margin-right: 0;
+    }
+
+    &::part(listbox-code-desc-selection-code) {
+        margin-right: 13px;
+    }
+
+    &::part(listbox-code-desc-selection-desc) {
+        position: relative;
+
+        &:before {
+            content: "-";
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 14px;
+            position: absolute;
+            top: -1px;
+            left: -8px;
+        }
+    }
+
+    &::part(listbox-code-desc-descript) {
+        padding-left: 13px;
+        position: relative;
+
+        &:before {
+            content: "-";
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 14px;
+            position: absolute;
+            top: -2px;
+            left: 5px;
+        }
+    }
+
+    &::part(pill-value-codedesc-label) {
+        padding-left: 13px;
+        position: relative;
+
+        &:before {
+            content: "-";
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 14px;
+            position: absolute;
+            top: -2px;
+            left: 5px;
+        }
+    }
+
+    &::part(pill-close-control) {
+        color: #6B6B6B;
+    }
+
+    &::part(pill-close-control):hover {
+        color: #4D4D4D;
+    }
+
+    &::part(listbox-mobile-dialog) {
+
+        &::part(listbox-options-container) {
+            height: auto;
+        }
+
+    }
+
+    &::part(presentation-generic) {
+        padding-left: 5px;
+    }
+
+    &[readOnly] {
+
+        &::part(hidden-select) {
+            display: none;
+        }
+
+        &::part(psuedo-input) {
+            border: 0;
+            min-height: auto;
+        }
+
+        & div[slot="dataContents"] {
+            font-weight: 600;
+        }
+
+        &::part(outer-wrapper) {
+            align-items: center;
+        }
+
+        &::part(listbox-outer-wrapper) {
+            height: 100%;
+        }
+
+        &::part(listbox-value-container) {
+            white-space: pre;
+            margin-top: 0;
+        }
+
+        &::part(listbox-contents) {
+            align-items: center;
+            display: flex;
+        }
+
+    }
+
+    &::part(option-multiple) {
+        padding: 0;
+    }
+
+    &[multiple] {
+
+        &::part(presentation-generic) {
+            padding-left: 5px;
+        }
+
+        &::part(listbox-multiple-option) {
+            padding: var(--input-option-padding-tb) var(--input-option-padding-right) var(--input-option-padding-tb) calc(var(--input-option-padding-left) + 5px)
+        }
+
+        &::part(listbox-multiple-option-control) {
+            border-radius: 16px;
+            height: 16px;
+            width: 16px;
+        }
+
+    }
+
+    &[codedesc] {
+        &::part(listbox-code-desc-wrapper) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &::part(listbox-code-desc-code) {
+            color: #555;
+            font-size: 11px;
+            font-weight: 600;
+            order: 2;
+            padding: 2px 0;
+        }
+
+        &::part(listbox-code-desc-descript) {
+            order: 1;
+            padding: 0;
+
+            &:before {
+                display: none;
+            }
+
+        }
+
+        &::part(listbox-code-desc-code-label-value) {
+            padding-left: 5px;
+        }
+
+        &[multiple] {
+
+            &::part(listbox-code-desc-wrapper) {
+                padding-left: 5px;
+            }
+
+        }
+
+    }
+
+}
+
+rpso-codedesc cui-listbox::part(listbox-outer-wrapper) {
+    align-items: center;
+}
+
+cui-formpill::part(label-wrapper) {
+    display: inline-flex;
+    flex-basis: var(--cui-field-label-flex-width);
+    justify-content: end;
+    min-width: var(--cui-field-label-flex-width);
+    align-items: center;
+}
+
+cui-formpill {
+    &::part(outer-wrapper) {
+        display: flex;
+    }
+}
+
+cui-date {
+    display: flex;
+    //justify-content: start;
+
+    &>button {
+        background: url(../images/calendar-outline.svg) no-repeat 5px 5px rgba(0, 0, 0, 0);
+        background-size: 20px 20px;
+        border: 0;
+        border-radius: 32px;
+        height: 30px;
+        margin-left: 7px;
+        margin-bottom: 0;
+        position: relative;
+
+        span {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+            top: -1px;
+        }
+
+        &:hover {
+            background: url('../images/calendar-outline.svg') no-repeat 5px 5px #CCC;
+            background-size: 20px 20px;
+        }
+    }
+
+    // Date Picker
+    .cui-full-calender-container {
+        grid-gap: 3px;
+
+        .day-of-week-letters {
+            border: 0;
+            border-radius: 3px;
+            margin-left: 1px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: 600;
+            color: #666;
+            height: 22px;
+        }
+
+        .day-of-week {
+            border: 0;
+            height: auto;
+            width: auto;
+        }
+
+        .current-date-selected {
+            border: 0;
+
+            button {
+                color: #fff;
+                background: var(--primary-button-background-color);
+
+                &[disabled="true"] {
+                    background: transparent;
+                    border: 0;
+                    border-radius: 0;
+                    color: #ccc;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .current-day {
+            background: #EFEFEF;
+            font-weight: 400;
+            border: 0;
+        }
+
+        .not-valid-day {
+            height: 0 !important;
+            width: 0 !important;
+        }
+    }
+
+    .date-header {
+
+        .prev-month,
+        .next-month {
+            border: 0;
+
+            span {
+                display: none;
+            }
+
+            &:hover {
+                background: #EFEFEF;
+
+                &::after {
+                    border-color: #333;
+                }
+            }
+        }
+
+        .prev-and-next-label {
+            border: 0;
+            font-weight: 600;
+            order: 1;
+            margin-right: 50px;
+        }
+
+        .prev-month {
+            flex: 0 0 25px;
+            order: 2;
+            position: relative;
+
+            &:after {
+                content: " ";
+                border: solid #747474;
+                border-width: 0 2px 3px 0;
+                display: inline-block;
+                padding: 2px;
+                transform: rotate(135deg);
+                -webkit-transform: rotate(135deg);
+                position: absolute;
+                top: 9px;
+                left: 11px;
+            }
+        }
+
+        .next-month {
+            flex: 0 0 25px;
+            order: 3;
+            position: relative;
+
+            &:after {
+                content: " ";
+                border: solid #747474;
+                border-width: 0 2px 2px 0;
+                display: inline-block;
+                padding: 2px;
+                transform: rotate(-45deg);
+                -webkit-transform: rotate(-45deg);
+                position: absolute;
+                top: 9px;
+                right: 11px;
+            }
+        }
+
+    }
+
+}
+
+cui-checkbox {
+
+    span[slot="labelContents"] {
+        span.accessible-label {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+            top: -1px;
+        }
+    }
+
+    span[slot="dataContents"].unchecked {
+        span {
+            //border: 1px solid #000;
+            //border-radius: 5px;
+            display: inline-block;
+            height: 18px;
+            padding: 0;
+            position: relative;
+            //overflow: hidden;
+            width: 18px;
+            margin-right: 10px;
+            min-height: 18px;
+
+            &:before,
+            &:after {
+                position: absolute;
+                left: 7px;
+                content: ' ';
+                height: 16px;
+                width: 3px;
+                background-color: var(--error-color);
+                //top: -4px;
+            }
+
+            &:before {
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    span[slot="dataContents"].checked {
+        span {
+            // border: 1px solid #000;
+            // border-radius: 5px;
+            display: inline-block;
+            height: 18px;
+            padding: 0;
+            position: relative;
+            //overflow: hidden;
+            width: 18px;
+            margin-right: 10px;
+            min-height: 18px;
+
+            &:before,
+            &:after {
+                background: var(--success-color);
+                content: " ";
+                display: block;
+                position: absolute;
+                width: 3px;
+            }
+
+            &:before {
+                height: 7px;
+                transform: rotate(-45deg);
+                top: 7px;
+                left: 4px;
+            }
+
+            &:after {
+                height: 12px;
+                transform: rotate(45deg);
+                left: 9px;
+                top: 2px
+            }
+
+        }
+    }
+}
+
+rpso-codedesc {
+    display: block;
+    margin-bottom: 10px;
+
+    cui-listbox {
+        margin-bottom: 0;
+
+        .inline-discription-slot {
+            display: none;
+        }
+
+        &::part(decorator-container) {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+            justify-content: center;
+        }
+
+    }
+
+    &::part(description-mobile) {
+        margin-top: 10px;
+        font-size: var(--standard-font-size);
+    }
+
+    &::part(description-input-value) {
+        font-weight: 600;
+    }
+
+}
+
+
+span[slot="labelContents"] {
+    display: inline-flex;
+    min-height: 26px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+span[slot="dataContents"] {
+    display: inline-flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: var(--standard-font-size);
+    justify-content: center;
+    min-height: 26px;
+}
+
+cui-radio-group,
+cui-check-group {
+    span[slot="dataContents"] {
+        font-weight: 400;
+    }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+label {
+    font-size: var(--standard-font-size);
+}
+
+cui-checkbox::part(outer-boolean-wrapper) {
+    display: flex;
+    // align-items: center;
+}
+
+cui-input-group {
+    display: flex;
+    width: 100%;
+
+    &[required] {
+        &::part(legend-wrapper) {
+
+            &::after {
+                content: "*";
+                display: inline-block;
+                font-size: 0.75rem;
+                color: var(--error-color);
+                position: relative;
+                margin-right: -7px;
+            }
+        }
+    }
+
+    div[slot="inputContainer"] {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 7px;
+
+        cui-text,
+        cui-listbox {
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+
+        span {
+            font-weight: 600;
+            position: relative;
+            padding-right: 7px;
+            top: 5px;
+        }
+    }
+
+
+}
+
+@media screen and (min-width: 500px) {
+
+    rpso-codedesc {
+
+        &::part(description-mobile) {
+            display: none;
+        }
+
+        cui-listbox {
+            margin-bottom: 0;
+
+            .inline-discription-slot {
+                display: block;
+                white-space: nowrap;
+            }
+        }
+
+    }
+
+}
+
+@media screen and (min-width: 1175px) {
+
+    cui-text::part(outer-wrapper),
+    cui-select::part(outer-wrapper),
+    cui-textarea::part(outer-wrapper),
+    cui-listbox::part(outer-wrapper),
+    cui-date::part(outer-wrapper),
+    cui-check-group::part(outer-wrapper),
+    cui-radio-group::part(outer-wrapper),
+    cui-file-upload::part(outer-wrapper) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    cui-file-upload::part(outer-wrapper) {
+        margin-bottom: 10px;
+    }
+
+	cui-text::part(primary-content-wrapper),
+    cui-select::part(primary-content-wrapper),
+    cui-textarea::part(primary-content-wrapper),
+    cui-listbox::part(primary-content-wrapper),
+    cui-date::part(primary-content-wrapper),
+    cui-check-group::part(primary-content-wrapper),
+    cui-radio-group::part(primary-content-wrapper),
+    cui-file-upload::part(primary-content-wrapper) {
+        display: flex;        
+    }
+
+	cui-text::part(secondary-content),
+    cui-select::part(secondary-content),
+    cui-textarea::part(secondary-content),
+    cui-listbox::part(secondary-content),
+    cui-date::part(secondary-content),
+    cui-check-group::part(secondary-content),
+    cui-radio-group::part(secondary-content),
+    cui-file-upload::part(secondary-content) {
+        display: flex;
+        
+    }
+
+    .button-row {
+        cui-text::part(label-wrapper),
+        cui-formpill::part(label-wrapper),
+        cui-select::part(label-wrapper),
+        cui-date::part(label-wrapper),
+        cui-check-group::part(label-wrapper),
+        cui-radio-group::part(label-wrapper),
+        cui-file-upload::part(label-wrapper),
+        cui-listbox::part(label-wrapper) {
+            flex-basis: unset;
+            min-width: 0px;
+        }
+    }
+   
+    cui-text::part(label-wrapper),
+    cui-formpill::part(label-wrapper),
+    cui-select::part(label-wrapper),
+    cui-date::part(label-wrapper),
+    cui-check-group::part(label-wrapper),
+    cui-radio-group::part(label-wrapper),
+    cui-file-upload::part(label-wrapper),
+    cui-listbox::part(label-wrapper) {
+        align-items: center;
+        display: inline-flex;
+        flex-basis: var(--cui-field-label-flex-width);
+        justify-content: end;
+        min-width: var(--cui-field-label-flex-width);
+        // max-height: 33px;
+    }
+
+    cui-file-upload::part(label-wrapper) {
+        align-items: start;
+    }
+
+    cui-file-upload {
+        div[slot="dataContents"] {
+            margin-left: 10px;
+        }
+    }
+
+    cui-listbox::part(label-wrapper) {
+        display: flex;
+        flex: 0 0 var(--cui-field-label-flex-width);
+    }
+
+    cui-listbox.center::part(label-wrapper) {
+        flex-basis: unset;
+        min-width: unset;
+    }
+
+    cui-formpill::part(label-wrapper) {
+        display: flex;
+        flex: 0 0 var(--cui-field-label-flex-width);
+    }
+
+	cui-text::part(message-contents),
+    cui-select::part(message-contents),
+    cui-textarea::part(message-contents),
+    cui-listbox::part(message-contents),
+    cui-date::part(message-contents),
+    cui-check-group::part(message-contents),
+    cui-radio-group::part(message-contents),
+    cui-file-upload::part(message-contents) {
+        display: flex;
+        margin-left: calc(10px + var(--cui-field-label-flex-width));
+    }
+
+
+    cui-listbox {
+        label {
+            display: inline-block;
+            margin-top: 7px;
+        }
+
+        &[readonly] {
+
+            // causing issue RSPO-62 in Jira, keeping as comment for unforseen original purpose
+            // &::part(listbox-value-container) {
+            //     margin-top: 3px;
+            // }
+
+            &::part(listbox-code-desc-selection-code) {
+                white-space: pre;
+            }
+        }
+
+        &::part(label-wrapper) {
+            display: flex;
+            flex: 0 0 var(--cui-field-label-flex-width);
+        }
+
+        &::part(label-container) {
+            text-align: right;
+            width: 100%;
+        }
+
+        // &::part(data-wrapper) {
+        //     flex: 1 0 auto;
+        // }
+    }
+
+    rpso-codedesc {
+
+        &::part(description-mobile) {
+            display: none;
+        }
+
+        cui-listbox {
+
+            &[readonly] {
+
+                &::part(decorator-container) {
+                    margin-top: 3px;
+                }
+
+            }
+        }
+
+    }
+
+    cui-textarea::part(label-wrapper) {
+        display: inline-flex;
+        flex-basis: var(--cui-field-label-flex-width);
+        justify-content: end;
+        min-width: var(--cui-field-label-flex-width);
+    }
+
+    cui-formpill::part(label-wrapper) {
+        display: inline-flex;
+        flex-basis: var(--cui-field-label-flex-width);
+        justify-content: end;
+        min-width: var(--cui-field-label-flex-width);
+    }
+
+    cui-text::part(data-wrapper),
+    cui-select::part(data-wrapper),
+    cui-listbox::part(data-wrapper),
+    cui-date::part(data-wrapper),
+    cui-radio-group::part(data-wrapper),
+    cui-check-group::part(data-wrapper) {
+        margin-left: 10px;
+        padding-right: 5px;
+    }
+
+    cui-file-upload::part(data-wrapper) {
+        margin-left: 0;
+        padding-right: 5px;
+    }
+
+    cui-textarea::part(data-wrapper) {
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    // Boolean Checkbox inputs
+    cui-checkbox::part(outer-boolean-wrapper) {
+        display: flex;
+		flex-direction: column;
+    }
+
+	
+
+    cui-checkbox::part(data-boolean-wrapper) {
+        align-items: center;
+        display: inline-flex;
+        flex-basis: 185px;
+        justify-content: end;
+        min-width: 185px;
+    }
+
+    cui-checkbox::part(label-boolean-wrapper) {
+        align-items: center;
+        display: inline-flex;
+    }
+
+	cui-checkbox::part(message-contents) {
+        margin-left: 185px;
+    }
+
+    cui-checkbox::part(data-boolean-wrapper),
+    cui-checkbox::part(label-boolean-wrapper) {
+        min-height: 24px;
+        max-height: 24px;
+    }
+
+    cui-input-group {
+
+        &::part(input-group-outer) {
+            display: flex;
+        }
+
+        &::part(legend-wrapper) {
+            align-items: center;
+            display: inline-flex;
+            flex-basis: var(--cui-field-label-flex-width);
+            justify-content: end;
+            min-width: var(--cui-field-label-flex-width);
+            max-height: 33px;
+        }
+
+        &::part(data-wrapper) {
+            margin-left: 10px;
+        }
+
+        cui-text::part(message-contents),
+        cui-select::part(message-contents),
+        cui-textarea::part(message-contents),
+        cui-listbox::part(message-contents),
+        cui-date::part(message-contents),
+        cui-check-group::part(message-contents),
+        cui-radio-group::part(message-contents),
+        cui-file-upload::part(message-contents) {
+            display: flex;
+            margin-left: 0px;
+        }
+
+    }
+
+}

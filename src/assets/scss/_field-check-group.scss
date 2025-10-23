@@ -1,0 +1,296 @@
+cui-check-group {
+
+    .readOnlySpanWrapper[alignment=horizontal] {
+        display: flex;
+        align-items: center;
+        flex: 0 1 auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: left;
+        display: flex;
+
+        .innerSpanContainer[data-selected=false] {
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            min-height: 33px;
+            padding-right: 8px;
+
+            .readOnlyCheckItem {
+
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                background-color: white;
+                margin: 10px 12px 10px 10px;
+                box-shadow: 0px 0px 0px 2.5px white, 0px 0px 0px 3.5px #A1A1A1;
+                min-width: 8px;
+                border-radius: .5px;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .innerSpanContainer[data-selected=true] {
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            min-height: 33px;
+            padding-right: 8px;
+
+            .readOnlyCheckItem {
+
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                margin: 10px 12px 10px 10px;
+                box-shadow: 0px 0px 0px 2.5px white, 0px 0px 0px 3.5px #A1A1A1;
+                border-radius: .5px;
+                min-width: 8px;
+
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+            }
+
+            .readOnlyCheckItem::before {
+
+                content: "";
+
+                position: absolute;
+
+                margin-top: -1px;
+                margin-left: 2px;
+                --borderWidth: 2px;
+                --height: 9px;
+                --width: 4.5px;
+                --borderColor: #A1A1A1;
+
+                display: inline-block;
+
+                // transform:translateX(2px) rotate(45deg);
+                transform: rotate(40deg);
+                height: var(--height);
+                width: var(--width);
+                border-bottom: var(--borderWidth) solid var(--borderColor);
+                border-right: var(--borderWidth) solid var(--borderColor);
+
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .readOnlySpanWrapper[alignment=vertical] {
+        display: flex;
+        align-items: left;
+        flex: 0 1 auto;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: left;
+        display: flex;
+
+        .innerSpanContainer[data-selected=false] {
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            min-height: 33px;
+            padding-right: 8px;
+
+            .readOnlyCheckItem {
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                background-color: white;
+                margin: 10px 12px 10px 10px;
+                box-shadow: 0px 0px 0px 2.5px white, 0px 0px 0px 3.5px #A1A1A1;
+                min-width: 8px;
+                border-radius: .5px;
+
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .innerSpanContainer[data-selected=true] {
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            min-height: 33px;
+            padding-right: 8px;
+
+            .readOnlyCheckItem {
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                margin: 10px 12px 10px 10px;
+                box-shadow: 0px 0px 0px 2.5px white, 0px 0px 0px 3.5px #A1A1A1;
+                min-width: 8px;
+                border-radius: .5px;
+
+            }
+
+            .readOnlyCheckItem::before {
+
+                content: "";
+
+                position: absolute;
+
+                margin-top: -1px;
+                margin-left: 2px;
+                --borderWidth: 2px;
+                --height: 9px;
+                --width: 4.5px;
+                --borderColor: #A1A1A1;
+
+                display: inline-block;
+
+                // transform:translateX(2px) rotate(45deg);
+                transform: rotate(40deg);
+                height: var(--height);
+                width: var(--width);
+                border-bottom: var(--borderWidth) solid var(--borderColor);
+                border-right: var(--borderWidth) solid var(--borderColor);
+
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+
+    //writeable group
+
+    .writeableSpanWrapper[alignment=horizontal] {
+        display: flex;
+        align-items: center;
+        flex: 0 1 auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: left;
+        display: flex;
+
+        .innerSpanContainer[data-selected=false] {
+
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            padding-right: 8px;
+
+            input[type=checkbox] {
+                cursor: pointer;
+                outline: none;
+                box-shadow: none;
+                min-height: 33px;
+
+                margin: 3px 10px 0px 6px;
+            }
+
+            label {
+                cursor: pointer;
+
+            }
+
+        }
+
+        .innerSpanContainer[data-selected=true] {
+
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            padding-right: 8px;
+
+            input[type=checkbox] {
+                cursor: pointer;
+                outline: none;
+                box-shadow: none;
+                min-height: 33px;
+
+                margin: 3px 10px 0px 6px;
+            }
+
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .writeableSpanWrapper[alignment=vertical] {
+        display: flex;
+        align-items: left;
+        flex: 0 1 auto;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: left;
+        display: flex;
+
+        .innerSpanContainer[data-selected=false] {
+
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            padding-right: 8px;
+
+            input[type=checkbox] {
+                cursor: pointer;
+                outline: none;
+                box-shadow: none;
+                min-height: 33px;
+
+                margin: 3px 10px 0px 6px;
+            }
+
+            label {
+                cursor: pointer;
+            }
+        }
+
+        .innerSpanContainer[data-selected=true] {
+
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            flex-wrap: nowrap;
+            padding-right: 8px;
+
+            input[type=checkbox] {
+                cursor: pointer;
+                outline: none;
+                box-shadow: none;
+                min-height: 33px;
+
+                margin: 3px 10px 0px 6px;
+            }
+
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+
+}

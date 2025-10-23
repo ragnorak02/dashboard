@@ -1,14 +1,11 @@
 {
-    "name": "example-base-ui",
-    "description": "Example Base Project",
+    "name": "tax-vision-base-ui",
+    "description": "Tax Vison Project",
     "version": "0.0.1",
     "dependencies": {
         "@nys-cui/cui-button": "0.2.6",
-        "@nys-cui/cui-chart": "^0.0.17",
-        "@nys-cui/cui-chart-bar": "^0.0.16",
-        "@nys-cui/cui-chart-line": "^0.0.10",
-        "@nys-cui/cui-field-check-group": "0.1.8",
         "@nys-cui/cui-field-checkbox": "0.2.21",
+        "@nys-cui/cui-field-check-group": "0.1.8",
         "@nys-cui/cui-field-listbox": "0.4.30",
         "@nys-cui/cui-field-radio-group": "0.1.10",
         "@nys-cui/cui-field-select": "0.2.14",
@@ -22,7 +19,6 @@
         "@nys-cui/cui-message-list": "0.1.4",
         "@nys-cui/cui-section": "0.2.17",
         "@nys-cui/cui-spa-app-class": "0.3.94",
-        "@nys-cui/cui-spinner": "^0.1.0",
         "@nys-cui/cui-table": "0.1.47",
         "@nys-cui/cui-toast": "0.1.4",
         "@nys-cui/cui-tree": "0.0.29"

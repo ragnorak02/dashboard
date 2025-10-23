@@ -1,0 +1,126 @@
+:host {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .page-info,
+    .page-info-meta,
+    .page-update-info,
+    .page-last-updated-by-container,
+    .page-last-updated-date-container,
+    .page-info-controls {
+        display: flex;
+    }
+
+    .page-title {
+        h1 {
+            color: var(--page-title-color);
+            font-size: 24px;
+            margin: 0;
+        }
+    }
+
+    .page-info {
+        width: 100%;
+    }
+
+    .page-title {
+        flex: 1;
+    }
+
+    .page-last-updated-by-container,
+    .page-last-updated-date-container {
+        color: var(--page-title-color);
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.5em;
+        }
+    }
+
+    .page-info-meta {
+        flex: 0 1 auto;
+        font-size: 14px;
+        justify-content: flex-end;
+
+        .page-info-controls {
+            flex: 0 1 0;
+
+            button {
+                background: transparent;
+                border: 0;
+                display: inline-block;
+                height: 32px;
+                width: 32px;
+            }
+        }
+    }
+
+    .page-note,
+    .page-help {
+        cursor: pointer;
+    }
+
+    .page-note {
+        margin-right: 5px;
+        cui-icon {
+            position: relative;
+
+            svg {        
+                fill: var(--page-icon-fill-color);
+                height: 28px;
+                stroke: var(--page-title-icon-color);
+                stroke-width: 10px;
+                position: absolute;
+                top: -14px;
+                left: -14px;
+                width: 28px;
+
+                #note-fill, #corner-fill {
+                    fill: var(--page-icon-fill-color);
+                }
+
+                #note-outline, #corner-outline {
+                    fill: var(--page-background-color);
+                    stroke: var(--page-background-color);
+                }
+            }
+        }
+
+        &:hover {
+            cui-icon {
+                svg {
+
+                    #note-fill, #corner-fill {
+                        fill: var(--page-icon-hover-color);
+                    }
+                }
+            }
+        }
+    }
+
+    .page-help {
+        cui-icon {
+            position: relative;
+
+            svg {        
+                fill: var(--page-title-icon-color);
+                height: 32px;
+                stroke: var(--page-title-icon-color);
+                position: absolute;
+                top: -16px;
+                left: -16px;
+                width: 32px;
+            }
+        }
+
+        &:hover {
+            svg {
+                fill: var(--page-icon-hover-color);
+            }
+        }
+    }
+} 

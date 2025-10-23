@@ -1,0 +1,108 @@
+@use '_variables.scss';
+
+$color_successPrimary: #43b17a;
+$color_successSecondary: #DFF0D8;
+$color_successText: #fff;
+
+$color_infoPrimary: #397dbb;
+$color_infoSecondary: #F0F9FF;
+$color_infoText: #fff;
+
+$color_warningPrimary: #ffeb95;
+$color_warningSecondary: #fff6cc;
+$color_warningText: #222;
+
+$color_errorPrimary: #bd4e4e;
+$color_errorSecondary: #f9e7e7;
+$color_errorText: #fff;
+
+
+
+
+cui-message{
+
+	.cui-message{
+		display: flex;
+		padding: 6px;
+		margin-top:6px;
+		box-shadow: variables.$sectionShadowBoxColor variables.$sectionShadowBoxX variables.$sectionShadowBoxY variables.$sectionShadowBoxBlur;
+
+
+		.cui-message-contents {
+			padding-top: 0.2em;
+		}
+
+		.cui-message-icon{
+			margin-right:6px;
+			
+			cui-icon,
+			cui-icon svg{
+			    display: inline-block;
+			    height:24px;
+			    width:24px;
+			    vertical-align: bottom;
+			    
+			}
+		}
+
+		&.cui-message-success{
+			color: $color_successText;
+			background: $color_successPrimary;
+			border: solid 1px $color_successPrimary;
+			border-left: solid 5px $color_successPrimary;
+			border-radius: 5px;
+			
+		}
+
+		&.cui-message-info{
+			color: $color_infoText;
+			background: $color_infoPrimary;
+			border: solid 1px $color_infoPrimary;
+			border-left: solid 5px $color_infoPrimary;
+			border-radius: 5px;
+			
+		}
+
+		&.cui-message-warning{
+			color: $color_warningText;
+			background: $color_warningPrimary;
+			border: solid 1px $color_warningPrimary;
+			border-left: solid 5px $color_warningPrimary;
+			border-radius: 5px;
+			
+		}
+
+		&.cui-message-error{
+			color: $color_errorText;
+			background: $color_errorPrimary;
+			border: solid 1px $color_errorPrimary;
+			border-left: solid 5px $color_errorPrimary;
+			border-radius: 5px;
+
+			
+		}
+
+
+	}
+}
+
+// cui-date .cui-message{
+//     margin-top:2px !important;
+// }
+
+// cui-textarea .cui-message{
+//     margin-top:2px !important;
+// }
+
+
+cui-section {
+	cui-message-list[slot="section-messages"] {
+		cui-message .cui-message {
+			margin: 0px 10px 10px 10px;
+		}
+
+		cui-message:last-of-type .cui-message {
+			margin-bottom: 20px;
+		}
+	}
+}

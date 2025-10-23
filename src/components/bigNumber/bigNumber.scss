@@ -1,0 +1,247 @@
+/* Big Number card (scoped to component Shadow DOM) */
+.bn-card {
+  --bn-bg: #fff;
+  --bn-text: #111;
+  --bn-subtle: #6b7280;
+  --bn-up: #0ea5e9; /* up color */
+  --bn-down: #ef4444; /* down color */
+  --bn-radius: 16px;
+
+  background: var(--bn-bg);
+  color: var(--bn-text);
+  border-radius: var(--bn-radius);
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  padding: 16px 18px 14px;
+  min-width: 220px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+:host {
+  display: inline-block;
+  margin: 14px;
+}
+
+/* row to place unit next to value */
+.bn-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.bn-unit {
+  font-size: 14px; 
+  font-weight: 600;
+  color: var(--bn-subtle);
+}
+
+/* API / metric source line under title */
+.bn-api {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bn-subtle);
+}
+
+/* --- Brutalist */
+:host([variant="brutalist"]) .bn-unit,
+:host([variant="brutalist"]) .bn-api {
+  color: var(--bn-text); 
+  background: #fff; 
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 2px 6px;
+  line-height: 1.1;
+  box-shadow: 2px 2px 0 #000;
+}
+
+:host([variant="brutalist"]) .bn-api {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.bn-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.bn-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: rgba(99,102,241,.08);
+  display: inline-block;
+}
+
+.bn-name { line-height: 1; }
+
+.bn-value {
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+.bn-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--bn-subtle);
+}
+
+.bn-change-value { font-weight: 600; }
+
+.bn-change-percent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.bn-arrow::before {
+  content: "▲";
+  display: inline-block;
+  font-size: 11px;
+  transform: translateY(-1px);
+}
+
+/* State flags set by JS */
+.bn--up .bn-change-percent { color: var(--bn-up); }
+.bn--down .bn-change-percent { color: var(--bn-down); }
+.bn--down .bn-arrow::before { content: "▼"; transform: translateY(0); }
+
+/* =========================================== 
+   BRUTALIST VARIANT
+   Toggle with: <big-number variant="brutalist">
+   Optional accent: [accent="yellow"|"pink"|"green"|"blue"]
+   Applies accent color to entire card
+   =========================================== */
+
+:host([variant="brutalist"]) .bn-card {
+  /* Base brutalist palette */
+  --bn-bg: #fffef6;
+  --bn-text: #000;
+  --bn-subtle: #222;
+  --bn-up: #1a8fe3;
+  --bn-down: #ff3b3b;
+
+  border: 3px solid #000;
+  border-radius: 6px;
+  color: var(--bn-text);
+  background: var(--bn-bg);
+  box-shadow:
+    0 0 0 2px #000 inset,
+    6px 6px 0 0 #000;
+  padding: 18px 20px 16px;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+/* Accent color presets*/
+:host([variant="brutalist"][accent="yellow"]) .bn-card {
+  background: #fff9c4;
+  --bn-accent: #ffd34d;
+}
+:host([variant="brutalist"][accent="pink"]) .bn-card {
+  background: #ffe1f0;
+  --bn-accent: #ff9ad5;
+}
+:host([variant="brutalist"][accent="green"]) .bn-card {
+  background: #e6fcd7;
+  --bn-accent: #b3f26b;
+}
+:host([variant="brutalist"][accent="blue"]) .bn-card {
+  background: #e4f4ff;
+  --bn-accent: #8fd2ff;
+}
+
+/* Header and icon tweaks */
+:host([variant="brutalist"]) .bn-header {
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+:host([variant="brutalist"]) .bn-icon {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: var(--bn-accent, #ffd34d);
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Big value and meta */
+:host([variant="brutalist"]) .bn-value {
+  font-size: clamp(34px, 7vw, 56px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: .5px;
+}
+
+:host([variant="brutalist"]) .bn-meta {
+  color: var(--bn-text);
+  gap: 12px;
+}
+
+/* Percent + change boxes */
+:host([variant="brutalist"]) .bn-change-value,
+:host([variant="brutalist"]) .bn-percent-text {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 2px 6px;
+  line-height: 1.1;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: 800;
+}
+
+/* Arrows */
+:host([variant="brutalist"]) .bn-arrow::before {
+  content: "▲";
+  font-weight: 900;
+  transform: translateY(-1px);
+}
+:host([variant="brutalist"]) .bn--down .bn-arrow::before {
+  content: "▼";
+}
+
+/* Up/down colors */
+:host([variant="brutalist"]) .bn--up .bn-percent-text { color: var(--bn-up); background: #e9f6ff; }
+:host([variant="brutalist"]) .bn--down .bn-percent-text { color: var(--bn-down); background: #fff0f0; }
+
+/* Hover and active motion */
+:host([variant="brutalist"]) .bn-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow:
+    0 0 0 2px #000 inset,
+    8px 8px 0 0 #000;
+}
+:host([variant="brutalist"]) .bn-card:active {
+  transform: translate(1px, 1px);
+  box-shadow:
+    0 0 0 2px #000 inset,
+    4px 4px 0 0 #000;
+}
+:host { display: inline-block; margin: 14px; }
+
+/* compare row */
+.bn-compare {
+  margin-top: 0px;
+  font-size: 13px;
+  color: var(--bn-subtle);
+}
+
+:host([variant="brutalist"]) .bn-compare {
+  display: inline-block;
+//   background: #fff;
+//   border: 2px solid #000;
+//   border-radius: 6px;
+//   padding: 0;
+     line-height: 1.1;
+//   box-shadow: 2px 2px 0 #000;
+   color: var(--bn-text);
+}
+
