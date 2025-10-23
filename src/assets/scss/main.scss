@@ -1,0 +1,392 @@
+@use '_variables.scss';
+
+@use '_fonts.scss';
+@use '_grid.scss';
+@use '_inputs.scss';
+@use '_buttons.scss';
+@use '_table.scss';
+@use '_cui-message.scss';
+@use '_cui-tree.scss';
+@use '_field-radio-group.scss';
+@use '_field-check-group.scss';
+
+// Global Variables
+:root {
+    // Generic Page variables
+    --page-font: #{"'Open Sans', Arial, sans-serif"};
+    --page-text-color: #{variables.$pageTextColor};
+    --page-nav-text-color: #{variables.$primaryButtonBackground};
+    --page-title-color: #{variables.$pageTitleTextColor};
+    --page-title-icon-color: #{variables.$pageTitleIconColor};
+    --page-background-color: #{variables.$defaultBackground};
+    --standard-font-size: 14px;
+
+    // Section specific variables
+    --section-background-color: #{variables.$sectionBackground};
+    --section-header-border-color: #{variables.$sectionHeaderBorderColor};
+    --section-header-button-hover-color: #{variables.$sectionHeaderButtonHoverColor};
+    --section-header-text-color: #{variables.$sectionHeaderTextColor};
+    --section-header-icon-color: #{variables.$sectionHeaderIconColor};
+    --section-header-fonts: #{"'Open Sans Light', Arial, sans-serif"};
+    --section-box-shadow-color: #{variables.$sectionShadowBoxColor};
+    --section-box-shadow-x: #{variables.$sectionShadowBoxX};
+    --section-box-shadow-y: #{variables.$sectionShadowBoxY};
+    --section-box-shadow-blur: #{variables.$sectionShadowBoxBlur};
+
+    // Buttons
+    --button-radius: #{variables.$buttonBorderRadius};
+    --primary-button-background-color: #{variables.$primaryButtonBackground};
+    --primary-button-text-color: #{variables.$primaryButtonTextColor};
+    --secondary-button-background-color: #{variables.$secondaryButtonBackground};
+    --secondary-button-text-color: #{variables.$secondaryButtonTextColor};
+    --secondary-button-border-color: #{variables.$secondaryButtonBorderColor};
+
+    // Tables
+    --cui-table-header-background-color: #{variables.$tableHeaderBackground};
+    --cui-table-border-color: #{variables.$tableBorderColor};
+    --cui-table-row-background-color-even: #{variables.$tableBodyBackgroundColorEven};
+    --cui-table-row-background-color-odd: #{variables.$tableBodyBackgroundColorOdd};
+	--cui-table-row-background-color-editable: #{variables.$tableBodyBackgroundColorEditable};
+	--cui-table-row-background-color-uneditable: #{variables.$tableBodyBackgroundColorUneditable};
+    --cui-table-body-text-color: #{variables.$tableBodyTextColor};
+    --cui-table-border-override-size: 1px;
+	
+	
+	
+
+    // Inputs
+    --input-border-color: #{variables.$inputBorderColor};
+    --label-text-color: #{variables.$inputLabelTextColor};
+
+    // cui-field overrides!
+    --cui-field-label-flex-width: 150px;
+    --cui-field-label-color: #{variables.$inputLabelTextColor};
+
+    // Header Icon
+    --page-icon-fill-color: #{variables.$pageTitleIconColor};
+    --page-icon-transparent-color: #{variables.$defaultBackground};
+    --page-icon-hover-color: #{variables.$pageHoverColor};
+
+    // Menu Seperator
+    --menu-seperator-color: #{variables.$menuSeperatorColor};
+    --menu-header-color: #818181;
+
+    // Message Colors
+    --error-color: #bd4e4e;
+    --success-color: #43b17a;
+
+    // Toast Messages
+    --cui-toast-success-background: #43b17a;
+    --cui-toast-success-border: transparent;
+    --cui-toast-success-timer-border: rgba(255, 255, 255, 0.75);
+
+    --cui-toast-error-background: #bd4e4e;
+    --cui-toast-error-border: transparent;
+    --cui-toast-error-timer-border: rgba(255, 255, 255, 0.75);
+
+    --cui-toast-warn-background: #ffeb95;
+    --cui-toast-warn-border: transparent;
+    --cui-toast-warn-timer-border: rgba(0, 0, 0, 0.75);
+
+    --cui-toast-info-background: #397dbb;
+    --cui-toast-info-border: transparent;
+    --cui-toast-info-timer-border: rgba(255, 255, 255, 0.75);
+
+    // Special Sections
+    // ======================================================
+    // Parcels
+
+    --context-header-background-color: #{variables.$contextBackground};
+    --context-header-border-color: #{variables.$contextBorderColor};
+
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+
+    &:focus:not(:focus-visible) {
+        outline: none
+    }
+}
+
+html,
+body {
+    background: variables.$defaultBackground;
+    font-family: 'Open Sans', Arial, sans-serif;
+    //height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+body {
+    overflow: auto;
+
+    #app-root {
+        display: flex;
+        flex-direction: column;
+        //height: 100%;
+        height: 100vh;
+        position: relative;
+        width: 100%;
+
+        & > div[data-rc="main-lvc"] {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .app-main-template {
+            margin-top: 55px;
+            height: 100%;
+
+            .app-header {
+                display: flex;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                align-items: center;
+                background: variables.$defaultFooterBackground;
+                min-height: 55px;
+                
+                h1 {
+                    margin: 0 0 0 .5em;
+                    font-size: 18px;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            .page {
+                margin: 1em;
+            }
+        }
+
+        .app-main-region {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex: 1;
+
+            #app-screen-container {
+                flex: 1;
+            }
+
+            #app-footer,
+            #app-footer-in-page {
+
+                display: flex;
+                flex-direction: row;
+
+                align-items: center;
+                background: variables.$defaultFooterBackground;
+                display: flex;
+                min-height: 4em;
+
+                div {
+                    flex: 1 0 auto;
+
+                    &.end {
+                        flex: 0 1 75px;
+
+                        button {
+                            background: transparent;
+                            border: 0;
+                            margin: 0;
+
+                            &:hover {
+                                background: var(--page-icon-hover-color);
+                            }
+
+                            cui-icon {
+                                display: block;
+                                height: 24px;
+                                width: 24px;
+
+                                svg {
+                                    height: 24px;
+
+                                    path {
+                                        stroke: #FFF;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                a {
+                    color: variables.$white;
+                    text-decoration: none;
+                    padding-left: 1em;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    p,
+    li,
+    ul,
+    ol,
+    div,
+    section,
+    main,
+    input,
+    textarea,
+    select {
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: var(--standard-font-size);
+    }
+
+    p {
+        margin: 0;
+    }
+
+    cui-section {
+
+        div[slot="section-contents"] {
+            margin: 0 10px;
+
+            div.grid,
+            div.grid-old {
+
+                .row {
+
+                    &.align-height {
+
+                        cui-section {
+
+                            &::part(root-section) {
+                                display: flex;
+                                flex: 1;
+                                flex-direction: column;
+                                height: 100%;
+                            }
+
+                        }
+                    }
+
+                    .col {
+                        cui-section {
+                            margin-left: .75rem;
+                            margin-right: .75rem;
+                        }
+
+                        &:first-of-type cui-section {
+                            margin-left: 0;
+                        }
+
+                        &:last-of-type cui-section {
+                            margin-right: 0;
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+        div[slot="section-footer"] {
+
+            .grid.button-row {
+                border-top: 1px solid variables.$sectionHeaderBorderColor;
+                padding: 0 20px;
+
+                .row {
+                    margin: 0;
+                    padding-top: 15px;
+
+                    .col {
+                        display: flex;
+
+                        button {
+                            margin-left: 10px
+                        }
+
+                        &>cui-button {
+
+                            button {
+                                margin-left: 0;
+                            }
+
+                        }
+
+                        &.align-end {
+                            :last-child {
+                                margin-right: 0px;
+                            }
+                        }
+
+                        &.button-left-col,
+                        &.blc {
+                            justify-content: end;
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+        div[slot="section-text"] {
+            p{
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        cui-section {
+            box-shadow: none;
+            //border: 1px solid var(--section-header-border-color);
+            border-radius: 5px;
+        }
+
+    }
+
+}
+
+#build-notes {
+    border: 0;
+}
+
+cui-form {
+    width: 100%;
+}
+
+// Prototype max width
+@media screen and (min-width: 950px) {
+
+    cui-section {
+        div[slot="section-contents"] {
+            margin: 0 20px;
+        }
+    }
+}
+
+// Prototype max width
+@media screen and (min-width: 1440px) {
+
+    cui-section {
+        max-width: 1162px;
+    }
+
+    cui-input-group {
+        margin-bottom: 10px;
+    }
+}

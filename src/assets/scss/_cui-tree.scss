@@ -1,0 +1,136 @@
+cui-tree {
+
+    cui-tree-branch {
+        .expandBtn {
+            font-family: var(--page-font);
+            font-size: var(--standard-font-size);
+            color: rgb(34, 34, 34);
+            border: none;
+            background: transparent;
+            margin-bottom: 0px;
+            padding: 2px 3px;
+            cursor: pointer;
+            text-align: left;
+        }
+    }
+
+    cui-tree-branch, cui-tree-leaf {
+        &::part(infoRow)::before {
+            margin-left: -10px;
+        }
+
+        cui-icon svg {
+            height:24px;
+            width: 24px;
+        }
+    }
+
+    .header {
+        &::part(leafText), .expandBtn
+        {
+            font-weight: 600;
+        }
+    }
+
+    &.sideNav {
+        &::part(trunk) {
+            padding-left: 20px;
+        }
+
+        cui-tree-leaf, cui-tree-branch {
+            &:first-child::part(appendage) {
+                padding-top: unset;
+            }
+
+            &::part(appendage) {
+                padding-top: 5px;
+            }
+
+            &::part(leafText), .expandBtn {
+                font-size: 15px;
+                color: #333;
+            }
+
+            &.header {
+                &::part(leafText), .expandBtn
+                {
+                    font-size: 16px;
+                }
+            }
+
+            .expandBtn:hover {
+                text-decoration: underline;
+            }
+
+            &::part(infoRow)::before {
+                border-left-color: #333;
+            }
+
+            cui-link a {
+                text-decoration: unset;
+                color: #333;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            cui-button button {
+                font-family: var(--page-font);
+                font-size: var(--standard-font-size);
+            }
+        }
+    }
+
+    cui-button[slot=controls] {
+        button {
+            background: transparent;
+            border: none;
+            padding: unset;
+            margin: unset;
+
+            cui-icon svg {
+                height:18px;
+                width: 18px;
+            }
+        }
+        
+    }
+
+    
+}
+
+cui-section cui-tree {
+    margin-bottom: 20px;
+
+    cui-tree-leaf {
+        padding-left: 1.2em;
+    }
+
+    cui-tree-branch {
+        &> {
+            cui-tree-branch {
+                padding-left: .4em;
+            }
+
+            cui-tree-leaf {
+                padding-left: 1.7em;
+            }
+        }
+
+        &[selectable]:not([selectable='false']){
+            &> {
+                cui-tree-branch {
+                    padding-left: .63em;
+                    .expandBtn {
+                        padding-left: 0px;
+                    }
+                }
+
+                cui-tree-leaf {
+                    padding-left: 1.7em;
+                }
+            }
+        }
+    }
+}

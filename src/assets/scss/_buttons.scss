@@ -1,0 +1,200 @@
+@use '_variables.scss';
+
+button {
+    background: variables.$secondaryButtonBackground;
+    border: 1px solid variables.$secondaryButtonBorderColor;
+    border-radius: 5px;
+    color: variables.$secondaryButtonTextColor;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+
+    &.primary {
+        background: variables.$primaryButtonBackground;
+        color: variables.$primaryButtonTextColor;
+    }
+
+    &.caret{
+
+        border-radius: 0;
+        border: 1px solid variables.$black;
+        padding: 2px 2px 0px 2px;
+        background: white;
+        cui-icon{
+
+            svg{
+                
+                width: 12px;
+                height: 12px;
+                
+            }
+
+            &.right{
+                svg{
+                    transform: rotate(-90deg);
+                }
+            }
+    
+            &.left{
+                svg{
+                transform: rotate(90deg);
+                }
+            }   
+        }
+    }
+
+    &.arrow{
+        background: rgba(0, 0, 0, 0);
+        border: 0;
+        margin-bottom:0;
+        cui-icon{
+
+            svg{
+                
+                width: 12px;
+                height: 12px;
+
+                path{
+                    fill: #a1a1a1;
+                }
+                
+            }   
+        }
+        &.next{
+
+            cui-icon{
+                svg{
+                    transform: scaleX(-1);
+                }
+            }
+        }
+        &.label-align{
+            margin-right: 4px;
+        }
+    }
+}
+
+cui-button::part(control) {
+    background: variables.$secondaryButtonBackground;
+    border: 1px solid variables.$secondaryButtonBorderColor;
+    border-radius: 5px;
+    color: variables.$secondaryButtonTextColor;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+}
+
+cui-button[primary] button {
+    background: variables.$primaryButtonBackground;
+    color: variables.$primaryButtonTextColor;
+}
+
+cui-button {
+    &+cui-button {
+        margin-left: 10px;
+    }
+}
+
+cui-button.table button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 6px;
+
+    cui-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+}
+
+cui-button.table-fake-link button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0px;
+    color: #397dbb
+}
+
+
+rpso-toggle-button {
+
+    button {
+        border: 1px solid variables.$secondaryButtonBorderColor;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0;
+        padding: 5px 15px;
+    }
+
+    &.primary {
+        button {
+            border: 1px solid variables.$secondaryButtonBorderColor;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 15px;
+            background: variables.$primaryButtonBackground;
+            color: variables.$primaryButtonTextColor;
+        }
+    }
+
+    &.icon {
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        height: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 3px;
+
+        button {
+            background: none;
+            border: none;
+            margin: 0;
+            padding: 0;
+
+            span.cui-hide-from-screen{
+                display: none;
+            }
+        }
+
+        cui-icon {
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    button {
+    
+        &.caret{
+    
+            cui-icon{
+    
+                svg{
+                    
+                    width: 12px;
+                    height: 12px;
+                    
+                }
+    
+                &.right{
+                    svg{
+                        transform: none;
+                    }
+                }
+        
+                &.left{
+                    svg{
+                    transform: rotate(180deg);
+                    }
+                }   
+            }
+        }
+    }
+}

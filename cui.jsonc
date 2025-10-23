@@ -1,0 +1,6 @@
+{
+    "name": "Tax Vision Base",
+    "mode": "spa",
+    "src": "src",
+    "entry": "spa.js"
+}
