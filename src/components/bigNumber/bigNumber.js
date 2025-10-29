@@ -180,24 +180,7 @@ _applyStateToDOM() {
     }
   }
 
-  //add formatting to the delta values,to add a + or - sign 
-  _format(v) {
-    const n = Number(v);
-    return Number.isFinite(n) ? n.toLocaleString('en-US') : (v ?? '');
-  }
 
-  _formatSigned(v, { suffix = '', fractionDigits = 2 } = {}) {
-  const n = Number(v);
-  if (Number.isFinite(n)) {
-    const f = new Intl.NumberFormat('en-US', {
-      signDisplay: 'always',
-      maximumFractionDigits: fractionDigits
-    });
-    return `${f.format(n)}${suffix}`;
-  }
-  // if it's not a clean number, just show it as-is
-  return String(v ?? '');
-}
 
 
 }
