@@ -1,0 +1,22 @@
+#big-table {
+  width: 50%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+#big-table th,
+#big-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+#big-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+#big-table tr:nth-child(even) {
+  background-color: #fafafa;
+}

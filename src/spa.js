@@ -42,6 +42,10 @@ import { TREE, TREE_BRANCH, TREE_LEAF, TREE_FILTER } from '@nys-cui/cui-tree';
 //Components need to be imported. The collection of .js, .tpl.html, and .scss files get merged into one .js file and then merged into spa.js
 import PAGE_INFO from './components/pageinfo/pageinfo.js';
 import BIG_NUMBER from './components/bigNumber/bigNumber.js';
+import BIG_TABLE from "./components/bigTable/bigTable.js";
+import TEST_MODULE from './components/testModule/testModule.js';
+
+
 
 //This APP class inherits the CUI_APP features
 class APP extends CUI_APP {
@@ -102,6 +106,8 @@ class APP extends CUI_APP {
         // create widgets to 
         customElements.define('exmpl-pageinfo', PAGE_INFO);
         customElements.define('big-number', BIG_NUMBER);
+
+
 
         if(window.location.host.indexOf('localhost') === 0) {
             window.APPNAME = "";

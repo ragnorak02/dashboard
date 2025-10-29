@@ -1,0 +1,30 @@
+    #test-card {
+    width: 200px;
+    height: 200px;
+    background-color: #f3f3f3;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+    }
+
+    #test-card:hover {
+    background-color: #e0e0e0;
+    }
+
+    #test-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 8px;
+    }
+
+    #test-info {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    }
