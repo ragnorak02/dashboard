@@ -1,0 +1,22 @@
+{
+    "headers": [
+        "Title",
+        "Status",
+        "Started",
+        "Ended"
+    ],
+    "rows": [
+        {
+            "Title": "Project A",
+            "Status": "✓",
+            "Started": "2025-01",
+            "Ended": "2025-02"
+        },
+        {
+            "Title": "Project B",
+            "Status": "✗",
+            "Started": "2025-03",
+            "Ended": "2025-04"
+        }
+    ]
+}
