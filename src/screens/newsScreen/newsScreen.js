@@ -28,6 +28,6 @@ export default class NEWSSCREEN extends SCREEN {
     }     
 }
         // this is added to fix a run-time error - no region specified for messages...
-        let testMess = window.TextIncludes.getTestMessage();
+        //let testMess = window.TextIncludes.getTestMessage();
 
-        console.log("test message2: " +  testMess);
+        //console.log("test message2: " +  testMess);

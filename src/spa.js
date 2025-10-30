@@ -45,6 +45,8 @@ import BIG_NUMBER from './components/bigNumber/bigNumber.js';
 import BIG_TABLE from "./components/bigTable/bigTable.js";
 import TEST_MODULE from './components/testModule/testModule.js';
 
+import * as Instana from './services/instana.js';
+
 
 
 //This APP class inherits the CUI_APP features
@@ -56,15 +58,13 @@ class APP extends CUI_APP {
             "status": true
         };
 
-        //displaly the current varibles and values of this APP class
-        console.log("print this");
+        //display the current varibles and values of this APP class
 
-        /*function getTestMessageFromIncludes() {
-        return window.TextIncludes.getTestMessage();
-        }*/
+        console.log('[spa] calling Instana.ping()...');
+        const pingResult = Instana.ping(); // will log from module + return 'ok'
 
         // example usage
-        let testMess = window.TextIncludes.getTestMessage();
+        //let testMess = window.TextIncludes.getTestMessage();
 
         this.viewKeys = VIEW_KEYS;
         this.helpKeys = HELP_KEYS;
@@ -107,7 +107,11 @@ class APP extends CUI_APP {
         customElements.define('exmpl-pageinfo', PAGE_INFO);
         customElements.define('big-number', BIG_NUMBER);
 
+        //customElements.define('instana-service', INSTANA);
 
+        
+        //console.log('[spa] calling Instana.ping()2...');
+        const pingResult2= Instana.buildAPI(); // will log from module + return 'ok'
 
         if(window.location.host.indexOf('localhost') === 0) {
             window.APPNAME = "";
@@ -144,6 +148,7 @@ class APP extends CUI_APP {
             }
 
             // 2. complete
+
             // navigate to this page
             // available screens are located in the /screens
             this.cRouter.navTo('newsScreen');
