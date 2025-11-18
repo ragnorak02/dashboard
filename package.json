@@ -22,5 +22,8 @@
         "@nys-cui/cui-table": "0.1.47",
         "@nys-cui/cui-toast": "0.1.4",
         "@nys-cui/cui-tree": "0.0.29"
+    },
+    "scripts": {
+        "proxy": "node src/server/instana-proxy.mjs"        
     }
 }
