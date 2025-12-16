@@ -4,12 +4,12 @@
 const TPL = `
   <style>
     :host { display:block; }
-    .wrap { display:grid; gap:12px; }
+    .box { display:grid; gap:12px; }
     canvas { width:100%; height:140px; border-radius:12px; background:#fff; box-shadow:0 1px 6px rgba(0,0,0,0.07); }
     .row { display:flex; align-items:center; gap:10px; }
     .title { font:600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto; color:#111; min-width:80px; }
   </style>
-  <div class="wrap">
+  <div class="box">
     <div class="row"><div class="title">Calls</div><canvas id="cCalls"></canvas></div>
     <div class="row"><div class="title">Latency (ms)</div><canvas id="cLatency"></canvas></div>
     <div class="row"><div class="title">Errors (mean)</div><canvas id="cErrors"></canvas></div>

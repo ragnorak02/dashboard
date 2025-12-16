@@ -2,3 +2,63 @@
     background-color: yellow;
     border: solid thin red;
 }
+
+.nimbus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(340px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+ 
+.nimbus-card {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 14px;
+  color: #eee;
+}
+ 
+.nimbus-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+ 
+.nimbus-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+ 
+.nimbus-row__label {
+  opacity: 0.9;
+  font-size: 14px;
+}
+ 
+.nimbus-row__barwrap {
+  height: 10px;
+  background: #2a2a2a;       // track (darker)
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+ 
+.nimbus-row__bar {
+  height: 100%;
+  background: #4aa3ff;       // fill (bright)
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset; // helps in dark UIs
+}
+ 
+.nimbus-row__value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+ 
+.nimbus-subtitle {
+  margin-top: 12px;
+  opacity: 0.8;
+  font-size: 13px;
+}
