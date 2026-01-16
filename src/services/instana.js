@@ -36,12 +36,7 @@ const PROXY_BASE =
     (location.hostname === "localhost" || location.hostname === "127.0.0.1"))
     ? "http://localhost:5090/api"
     : "/api";
- 
- 
-/* ------------------------------------------------------------------ */
-/*  Quick sanity helper                                                */
-/* ------------------------------------------------------------------ */
- 
+  
 /*
   Simple utility so I can verify that my bundler is wiring this module in.
   I can call ping() from anywhere and also see a console message once.

@@ -1,6 +1,918 @@
-<div class="page">
-    <h2>Dashboard Screen</h2>
-    <div class ="testDiv">
-        dashboardScreen div class
-    </div>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Layout Prototype</title>
+  <style>
+    /* =========================================================
+       THEME + SCALE (driven by data attrs on <html>)
+       ========================================================= */
+    :root{
+      --radius: 14px;
+      --gap: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.18);
+      --border: rgba(255,255,255,.10);
+      --border2: rgba(0,0,0,.10);
+
+      /* text scale baseline */
+      --ui-scale: 1; /* 0.85 .. 1.25 */
+      --fz-12: calc(12px * var(--ui-scale));
+      --fz-13: calc(13px * var(--ui-scale));
+      --fz-14: calc(14px * var(--ui-scale));
+      --fz-16: calc(16px * var(--ui-scale));
+      --fz-18: calc(18px * var(--ui-scale));
+      --fz-22: calc(22px * var(--ui-scale));
+    }
+
+    html[data-theme="dark"]{
+      --bg: #0b0d10;
+      --panel: #11151b;
+      --panel2: #0f1318;
+      --text: #e7ecf2;
+      --muted: rgba(231,236,242,.72);
+      --line: rgba(231,236,242,.10);
+      --chip: rgba(231,236,242,.08);
+      --focus: rgba(125, 211, 252, .35);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --ok: #34d399;
+      --warn: #fbbf24;
+      --bad: #fb7185;
+    }
+
+    html[data-theme="light"]{
+      --bg: #eef1f4;
+      --panel: #ffffff;
+      --panel2: #f6f7f9;
+      --text: #0c1116;
+      --muted: rgba(12,17,22,.64);
+      --line: rgba(12,17,22,.10);
+      --chip: rgba(12,17,22,.06);
+      --focus: rgba(59, 130, 246, .25);
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --ok: #059669;
+      --warn: #d97706;
+      --bad: #e11d48;
+    }
+
+    /* color/no-color mode (keeps layout same, just neutralizes accents) */
+    html[data-color="off"]{
+      --accent: #9ca3af;
+      --accent2: #9ca3af;
+      --ok: #9ca3af;
+      --warn: #9ca3af;
+      --bad: #9ca3af;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: var(--fz-14);
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       APP SHELL
+       ========================================================= */
+    .app{
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    /* =========================================================
+       TOP TOOLBAR
+       ========================================================= */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--panel) 88%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner{
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 10px 14px;
+      display: grid;
+      gap: 10px;
+      align-items: center;
+      grid-template-columns: auto 260px 1fr auto;
+    }
+
+    @media (max-width: 980px){
+      .topbar-inner{
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "logo controls"
+          "project project"
+          "search search";
+      }
+      .logo{ grid-area: logo; }
+      .controls{ grid-area: controls; justify-self: end; }
+      .project{ grid-area: project; }
+      .search{ grid-area: search; }
+    }
+
+    .logo{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      user-select: none;
+      min-width: 160px;
+    }
+    .logo-mark{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 18px rgba(0,0,0,.15);
+    }
+    .logo-text{
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text strong{ font-size: var(--fz-16); }
+    .logo-text span{ font-size: var(--fz-12); color: var(--muted); }
+
+    .project{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      min-height: 46px;
+    }
+    .project label{
+      font-size: var(--fz-12);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    select{
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 10px 10px;
+      font-size: var(--fz-14);
+      outline: none;
+    }
+    select:focus{ box-shadow: 0 0 0 4px var(--focus); }
+
+    .search{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      min-height: 46px;
+    }
+    .search input{
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: var(--fz-14);
+    }
+    .search .icon{
+      width: 34px; height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    .controls{
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      min-height: 46px;
+    }
+
+    .scale{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scale button{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      font-size: var(--fz-16);
+    }
+    .scale button:hover{ filter: brightness(1.03); }
+    .scale .value{
+      width: 44px;
+      text-align: center;
+      font-size: var(--fz-12);
+      color: var(--muted);
+    }
+
+    .toggle{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+    .toggle span{
+      font-size: var(--fz-12);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .switch{
+      width: 48px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--line);
+      position: relative;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .switch::after{
+      content:"";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 4px;
+      width: 20px; height: 20px;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--panel) 75%, var(--accent));
+      transition: left .18s ease;
+      box-shadow: 0 6px 14px rgba(0,0,0,.18);
+    }
+    .switch[data-on="true"]{
+      background: color-mix(in oklab, var(--accent) 18%, var(--chip));
+      border-color: color-mix(in oklab, var(--accent) 35%, var(--line));
+    }
+    .switch[data-on="true"]::after{ left: 22px; }
+
+    /* =========================================================
+       MAIN GRID OF ROWS + CARDS
+       ========================================================= */
+    .main{
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 14px;
+      display: grid;
+      gap: var(--gap);
+    }
+
+    /* Rows can be small/medium/large, each row controls card height */
+    .row{
+      background: color-mix(in oklab, var(--panel) 70%, transparent);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      padding: var(--gap);
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .row.small{ --row-min: 120px; }
+    .row.medium{ --row-min: 190px; }
+    .row.large{ --row-min: 280px; }
+
+    /* Responsive card columns:
+       - cards are min 260px wide; auto-fit will adapt to monitor width
+    */
+    .cards{
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: stretch;
+    }
+
+    /* Card */
+    .card{
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
+      overflow: hidden;
+      min-height: var(--row-min);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      touch-action: manipulation;
+    }
+    .card:hover{
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+      border-color: color-mix(in oklab, var(--accent) 25%, var(--line));
+    }
+
+    .card-header{
+      padding: 12px 12px 10px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in oklab, var(--panel2) 65%, transparent);
+    }
+
+    .card-title{
+      display: grid;
+      gap: 2px;
+    }
+    .card-title strong{ font-size: var(--fz-14); }
+    .card-title span{ font-size: var(--fz-12); color: var(--muted); }
+
+    .card-actions{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .pill{
+      font-size: var(--fz-12);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--chip);
+      white-space: nowrap;
+    }
+
+    .btn{
+      width: 34px; height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:hover{ filter: brightness(1.03); }
+
+    .card-body{
+      padding: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: var(--fz-13);
+    }
+
+    .placeholder{
+      width: 100%;
+      height: 100%;
+      min-height: calc(var(--row-min) - 70px);
+      border-radius: 12px;
+      border: 1px dashed var(--line);
+      background:
+        radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 55%),
+        radial-gradient(circle at 80% 60%, color-mix(in oklab, var(--accent2) 18%, transparent), transparent 55%),
+        linear-gradient(180deg, color-mix(in oklab, var(--panel2) 60%, transparent), transparent);
+      display: grid;
+      place-items: center;
+    }
+
+    .card-footer{
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--fz-12);
+      color: var(--muted);
+      background: color-mix(in oklab, var(--panel2) 65%, transparent);
+    }
+
+    /* Expanded card: spans full row width; height grows */
+    .card.expanded{
+      grid-column: 1 / -1;
+      min-height: calc(var(--row-min) * 1.35);
+      border-color: color-mix(in oklab, var(--accent) 35%, var(--line));
+      box-shadow: var(--shadow);
+    }
+    .card.expanded .placeholder{
+      min-height: calc(var(--row-min) * 1.05);
+    }
+
+    /* Drag visual states */
+    .card.dragging{
+      opacity: .88;
+      transform: scale(1.01);
+      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+      border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+      cursor: grabbing;
+    }
+    .card.ghost{
+      outline: 2px dashed color-mix(in oklab, var(--accent) 55%, var(--line));
+      outline-offset: -6px;
+    }
+    .grab-hint{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dots{
+      width: 14px; height: 14px;
+      background:
+        radial-gradient(currentColor 2px, transparent 3px) 0 0/7px 7px;
+      color: color-mix(in oklab, var(--muted) 80%, var(--text));
+      opacity: .7;
+      border-radius: 3px;
+    }
+
+    /* Small helpers */
+    .sr{
+      position:absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <!-- TOP TOOLBAR -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo" id="homeBtn" title="Go Home">
+          <div class="logo-mark" aria-hidden="true"></div>
+          <div class="logo-text">
+            <strong>TV Dash</strong>
+            <span>Interactive cards</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <label for="projectSelect">Project</label>
+          <select id="projectSelect">
+            <option>Empire</option>
+            <option>Empire (E1 → E2)</option>
+            <option>Instana</option>
+            <option>Jira</option>
+          </select>
+        </div>
+
+        <div class="search">
+          <div class="icon" aria-hidden="true">🔎</div>
+          <input id="searchInput" type="search" placeholder="Search cards, pages, metrics…" />
+        </div>
+
+        <div class="controls">
+          <div class="scale" title="Text size">
+            <button id="scaleDown" aria-label="Decrease text size">–</button>
+            <div class="value" id="scaleValue">100%</div>
+            <button id="scaleUp" aria-label="Increase text size">+</button>
+          </div>
+
+          <div class="toggle" title="Light/Dark">
+            <span>Theme</span>
+            <div class="switch" id="themeSwitch" data-on="true" role="switch" aria-checked="true" tabindex="0"></div>
+          </div>
+
+          <div class="toggle" title="Color / No Color">
+            <span>Color</span>
+            <div class="switch" id="colorSwitch" data-on="true" role="switch" aria-checked="true" tabindex="0"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <cui-message-list id="screen-messages"></cui-message-list>
+    <!-- MAIN CONTENT -->
+    <main class="main" id="main">
+      <!-- Row 1 (medium) -->
+      <section class="row medium" data-row="1">
+        <div class="cards" data-row-cards>
+          <article class="card" data-card-id="overall-progress">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>E1 → E2 Overall Progress</strong>
+                <span>Placeholder for progress bar / KPI</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">KPI</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Chart / Viz Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="new-pages">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>New Pages Added to E2</strong>
+                <span>Timeline / bubbles (placeholder)</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Trend</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Chart / Viz Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="notifications">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Notifications</strong>
+                <span>Build/job status feed (placeholder)</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Feed</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Content / Feed Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Row 2 (large) -->
+      <section class="row large" data-row="2">
+        <div class="cards" data-row-cards>
+          <article class="card" data-card-id="pages-remaining">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Empire Pages Remaining</strong>
+                <span>Line chart placeholder</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Chart</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Chart / Viz Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="audit-trail">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Audit Trail Usage</strong>
+                <span>Donut / KPI placeholder</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Chart</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Chart / Viz Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="pending-testing">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Migrations Pending Testing</strong>
+                <span>Bar chart placeholder</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Chart</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Chart / Viz Area</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Row 3 (small) -->
+      <section class="row small" data-row="3">
+        <div class="cards" data-row-cards>
+          <article class="card" data-card-id="system-health">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>System Health</strong>
+                <span>CPU / MEM / DISK placeholders</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Status</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Mini KPIs / Sparklines</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="network-health">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Network Health</strong>
+                <span>Latency / throughput placeholders</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Status</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Mini KPIs / Sparklines</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+
+          <article class="card" data-card-id="custom-slot">
+            <div class="card-header">
+              <div class="card-title">
+                <strong>Empty Slot</strong>
+                <span>Drop in a future card type</span>
+              </div>
+              <div class="card-actions">
+                <span class="pill">Slot</span>
+                <div class="btn" data-expand title="Expand">⤢</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="placeholder">Card Content</div>
+            </div>
+            <div class="card-footer">
+              <span class="grab-hint"><span class="dots"></span> Hold to drag</span>
+              <span>Updated: —</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // =========================================================
+    // App state
+    // =========================================================
+    const html = document.documentElement;
+
+    // Defaults
+    html.dataset.theme = "dark";
+    html.dataset.color = "on";
+    let uiScale = 1.0;
+
+    // =========================================================
+    // Topbar interactions
+    // =========================================================
+    const themeSwitch = document.getElementById("themeSwitch");
+    const colorSwitch = document.getElementById("colorSwitch");
+    const scaleDown = document.getElementById("scaleDown");
+    const scaleUp = document.getElementById("scaleUp");
+    const scaleValue = document.getElementById("scaleValue");
+    const homeBtn = document.getElementById("homeBtn");
+
+    function setSwitch(el, on){
+      el.dataset.on = String(on);
+      el.setAttribute("aria-checked", String(on));
+    }
+
+    function applyScale(){
+      // clamp between 0.85 and 1.25
+      uiScale = Math.max(0.85, Math.min(1.25, uiScale));
+      html.style.setProperty("--ui-scale", uiScale.toFixed(2));
+      scaleValue.textContent = Math.round(uiScale * 100) + "%";
+    }
+    applyScale();
+
+    themeSwitch.addEventListener("click", () => {
+      const next = html.dataset.theme === "dark" ? "light" : "dark";
+      html.dataset.theme = next;
+      setSwitch(themeSwitch, next === "dark");
+    });
+
+    colorSwitch.addEventListener("click", () => {
+      const next = html.dataset.color === "on" ? "off" : "on";
+      html.dataset.color = next;
+      setSwitch(colorSwitch, next === "on");
+    });
+
+    // keyboard toggle support
+    [themeSwitch, colorSwitch].forEach(sw => {
+      sw.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          sw.click();
+        }
+      });
+    });
+
+    scaleDown.addEventListener("click", () => { uiScale -= 0.05; applyScale(); });
+    scaleUp.addEventListener("click", () => { uiScale += 0.05; applyScale(); });
+
+    homeBtn.addEventListener("click", () => {
+      // placeholder: you can route this to your real "home"
+      alert("Home clicked (wire to your router)");
+    });
+
+    // =========================================================
+    // Card expand/collapse
+    // - clicking the expand icon expands
+    // - clicking header/body toggles (except when dragging)
+    // =========================================================
+    let isDragging = false;
+
+    document.querySelectorAll("[data-expand]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const card = e.currentTarget.closest(".card");
+        card.classList.toggle("expanded");
+      });
+    });
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", (e) => {
+        if(isDragging) return;
+        // If user clicked an interactive element, ignore
+        if(e.target.closest("[data-expand]")) return;
+        // Toggle expand on normal click
+        card.classList.toggle("expanded");
+      });
+    });
+
+    // =========================================================
+    // Long-press to drag/reorder cards (within their row)
+    // - Press and hold 250ms then drag
+    // - Works with mouse and touch via Pointer Events
+    // =========================================================
+    const HOLD_MS = 250;
+    let holdTimer = null;
+    let dragCard = null;
+    let dragOriginRow = null;
+
+    function getCardFromPoint(x, y){
+      const el = document.elementFromPoint(x, y);
+      return el ? el.closest(".card") : null;
+    }
+
+    function clearGhosts(scope){
+      (scope || document).querySelectorAll(".card.ghost").forEach(c => c.classList.remove("ghost"));
+    }
+
+    function onPointerDown(e){
+      const card = e.currentTarget;
+      if(e.button !== undefined && e.button !== 0) return; // left click only
+
+      // start hold timer
+      holdTimer = setTimeout(() => {
+        isDragging = true;
+        dragCard = card;
+        dragOriginRow = card.closest("[data-row-cards]");
+
+        card.classList.add("dragging");
+        card.setPointerCapture(e.pointerId);
+
+        // prevent accidental click-expand after drag
+      }, HOLD_MS);
+
+      // If user starts moving before hold triggers, cancel
+      card.__startX = e.clientX;
+      card.__startY = e.clientY;
+    }
+
+    function onPointerMove(e){
+      const card = e.currentTarget;
+
+      // cancel hold if user moves too much before drag begins
+      if(!isDragging && holdTimer){
+        const dx = Math.abs(e.clientX - (card.__startX || e.clientX));
+        const dy = Math.abs(e.clientY - (card.__startY || e.clientY));
+        if(dx + dy > 8){
+          clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+      }
+
+      if(!isDragging || dragCard !== card) return;
+
+      // Identify card under pointer within same row container
+      const container = dragOriginRow;
+      const over = getCardFromPoint(e.clientX, e.clientY);
+
+      clearGhosts(container);
+
+      if(over && over !== dragCard && container.contains(over)){
+        over.classList.add("ghost");
+
+        // Insert before/after based on horizontal position
+        const overRect = over.getBoundingClientRect();
+        const before = e.clientX < overRect.left + overRect.width / 2;
+        if(before){
+          container.insertBefore(dragCard, over);
+        } else {
+          container.insertBefore(dragCard, over.nextSibling);
+        }
+      }
+    }
+
+    function onPointerUp(e){
+      const card = e.currentTarget;
+
+      if(holdTimer){
+        clearTimeout(holdTimer);
+        holdTimer = null;
+      }
+
+      if(isDragging && dragCard === card){
+        clearGhosts(dragOriginRow);
+        card.classList.remove("dragging");
+
+        // allow clicks again after the stack settles
+        setTimeout(() => { isDragging = false; }, 0);
+
+        dragCard = null;
+        dragOriginRow = null;
+      }
+    }
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("pointerdown", onPointerDown);
+      card.addEventListener("pointermove", onPointerMove);
+      card.addEventListener("pointerup", onPointerUp);
+      card.addEventListener("pointercancel", onPointerUp);
+      card.addEventListener("lostpointercapture", onPointerUp);
+    });
+
+    // =========================================================
+    // Optional: simple search filter (placeholder)
+    // - Filters cards whose title doesn't match
+    // =========================================================
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll(".card").forEach(card => {
+        const title = card.querySelector(".card-title strong")?.textContent?.toLowerCase() || "";
+        card.style.display = (!q || title.includes(q)) ? "" : "none";
+      });
+    });
+
+    // Initialize switch visuals based on default theme/color
+    setSwitch(themeSwitch, html.dataset.theme === "dark");
+    setSwitch(colorSwitch, html.dataset.color === "on");
+  </script>
+</body>
+</html>

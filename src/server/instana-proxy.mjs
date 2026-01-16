@@ -10,7 +10,7 @@ const INSTANA_PATH = "/api/application-monitoring/analyze/call-groups";
 const TOKEN = process.env.INSTANA_API_TOKEN;
  
 // Nimbus endpoint (new)
-const NIMBUS_HOST = "nimbus-support-request-dev.apps.dtf-np.caas.ny.gov";
+const NIMBUS_HOST = "nimbus-support-request-prod.apps.dtf.caas.ny.gov";
 const NIMBUS_PATH = "/displayIssuesOnTV";
  
 // I keep my internal CA chain in one bundle file

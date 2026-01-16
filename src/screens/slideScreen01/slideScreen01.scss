@@ -1,0 +1,39 @@
+cui-chart-bar::part(axis-text y-axis-text) {
+        font-size: 16px;
+
+    }
+
+cui-chart-bar::part(axis-text value-axis-text){
+    font-size: 16px;  
+}
+
+.loader {
+    width: 75px;
+    height: 75px;
+    border: 5px solid #A1A1A1;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: #0b5d66;
+    width: 3px;
+    height: 31px;
+    transform: translateX(-50%);
+  }
+      
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 

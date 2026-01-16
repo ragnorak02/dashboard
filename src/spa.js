@@ -1,18 +1,10 @@
-// 1.
-// This is the main file. 
-
-// Create a new page in src/screens/newPage/
-// page is comprised of 4 file types, .js, .scss, .tpl.html, and .jsonc
-// copy an existing .jsonc file into the new screens folder
-// use newsScreen as an example
-
 // How to navigate to a page. do a search for 2.
 
 // Create a UI component
 // create a folder in src/components/
 // create a .js, .scss, and a tpl.html file that all merge into one .js file at build time.
 // import that component in this file, see bigNumber for a reference
-
+// add the new compoment to the screen's tpl.html file
 
 //Primary App class for CUI SPA apps
 import CUI_APP from '@nys-cui/cui-spa-app-class';
@@ -45,10 +37,11 @@ import BIG_NUMBER from './components/bigNumber/bigNumber.js';
 //import BIG_TABLE from "./components/bigTable/bigTable.js";
 //import TEST_MODULE from './components/testModule/testModule.js';
 
-import * as Instana from './services/instana.js';
-import { buildIv0005SubmitBody, buildInstanaBody, fetchInstanaViaProxy } from './services/instana.js';
-import { preloadInstanaQueries } from './services/instana.js';
-import { INSTANA_QUERIES } from './services/instanaQueuries.js';
+//API requests need to be moved from page initilization to files in services/ folder
+//import * as Instana from './services/instana.js';
+//import { buildIv0005SubmitBody, buildInstanaBody, fetchInstanaViaProxy } from './services/instasna.js';
+//import { preloadInstanaQueries } from './services/instana.js';
+//import { INSTANA_QUERIES } from './services/instanaQueuries.js';
 
 //This APP class inherits the CUI_APP features
 class APP extends CUI_APP {
@@ -68,14 +61,11 @@ class APP extends CUI_APP {
         this.viewKeys = VIEW_KEYS;
         this.helpKeys = HELP_KEYS;
 
-        //3. 
-        // need to redo this part. Throw the app layout selection into the individual screen.js files, for exmaple newsScreen.js
         this.sAppLayout = "main";
-        this.sApp404Screen = "404";
+        this.sApp404Screen = "404";        
 
         //define custom elements based on imports
         //customElements.define('[tag name in html]', [imported class name]);
-        // I do not think we need all of these, I am not certain of the weight.
         //ideally we would use these if applicable
         customElements.define('cui-button', BUTTON);
         customElements.define('cui-checkbox', CHECKBOX);
@@ -102,9 +92,8 @@ class APP extends CUI_APP {
         customElements.define("cui-tree-filter", TREE_FILTER);
 
         //these are the components found in src/components/
-        // create widgets to 
-        customElements.define('exmpl-pageinfo', PAGE_INFO);
-        customElements.define('big-number', BIG_NUMBER);
+        //customElements.define('exmpl-pageinfo', PAGE_INFO);
+        //customElements.define('big-number', BIG_NUMBER);
 
         //customElements.define('instana-service', INSTANA);
         //console.log('[spa] calling Instana.ping()...', Instana.ping());
@@ -127,7 +116,6 @@ class APP extends CUI_APP {
         }
     }
 
-    //1. complete
     //start app
     async init() {
         if(!this.__bInit) {
@@ -147,26 +135,19 @@ class APP extends CUI_APP {
             this._init_DataInterface();
             this._init_DataStore();
 
-            /*let sCurrentLocation = this.sLaunchPath.replace(this.sOrigin, '');
 
-            if(sCurrentLocation && sCurrentLocation.length && sCurrentLocation !== "/") {
-                await this.cRouter.navTo(sCurrentLocation);
-            }
-            else {
-                await this.cRouter.navTo("/");
-            }
-                */
 
-            // 2. complete
-
-            // navigate to this page
-            // available screens are located in the /screens
-
+            /* THIS IS WHERE SOME UNIVERSALLY USED api CALLS WILL BE MADE
              this._preloadInstana();
-
+             this._preloadGit();
+             this._preloadJira();
+            */
+           
             this.__bInit = true;
             
-            this.cRouter.navTo('newsScreen');
+            // navigate to this page
+            // available screens are located in the /screens
+            this.cRouter.navTo('monitorScreen');
         }
     }
 
@@ -208,6 +189,7 @@ class APP extends CUI_APP {
         this.dsAppData = this._dataStore;
     }
 
+  /*
     async _preloadInstana() {
   try {
     console.log('[instana][preload] starting...');
@@ -244,6 +226,7 @@ class APP extends CUI_APP {
     console.error('[instana][preload] unexpected error:', err);
   }
 }
+*/
 
 }
 

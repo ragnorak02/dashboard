@@ -1,0 +1,95 @@
+cui-slide-show{
+    border: 10px solid brown;
+    height: 100%;
+    // .progress-bar-container {
+    //     display: flex;
+    //     width: auto;
+    //     height: 2vh;
+    //     // border: 2px solid orange;
+    //     //margin-top dependent on borders for header and footer
+    //     margin-top: 97.5vh;
+    //     justify-content: flex-end;
+    // }
+    // progress{
+    //     // -webkit-appearance: none;
+    //     width: 100%;
+    //     // height: 2vh;
+    //     background-color: blue;
+    // }
+    // progress[value]::-webkit-progress-value{
+    //     background-color: #007681;
+    // }
+    // ::-webkit-progress-bar {
+    //     background-color:#e0eeef ;
+    //     height: 2.5vh;
+    //   }
+    
+
+}
+
+
+:host {
+    display: block;
+    height: 100%;
+    //margin: 1em;
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+
+    ::slotted(cui-slide) {
+
+        opacity: 0;
+    }
+    
+    ::slotted(cui-slide[active]) {
+        opacity: 1;
+    }
+    
+    .slideshow-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .slideshow-slide-container,
+        .slideshow-footer-container,
+        .slideshow-header-container,
+        .progress-bar-containe {
+            width: 100%;
+        }
+    
+        .slideshow-slide-container {
+            flex: 1;
+        }
+    
+        .slideshow-footer-container,
+        .slideshow-header-container {
+            flex: 0 1 auto;
+        }
+    
+        .progress-bar-container {
+            flex: 0 1 10px;
+    
+            progress[value] {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                     appearance: none;
+                background-color: transparent;
+                border: 0;
+                width: 100%;
+                transition: width 1s linear;
+    
+                &::-webkit-progress-bar {
+                    background-color: #e0eeef
+                }
+    
+                &::-webkit-progress-value {
+                    background: #007681;
+                }
+            }
+        }
+    }
+
+}

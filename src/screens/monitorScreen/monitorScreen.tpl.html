@@ -1,0 +1,351 @@
+<!--
+to create a new component to use here:
+1. create a folder in src/components/
+2. create 3 files in the new folder: newComponent.js, newComponent.scss, newComponent.tpl.html
+3. Import the new component in the spa.js file
+Now you can use that component in this html file
+-->
+
+<div class="page">
+  <header class="Monitor-toolbar">
+    <div class="Monitor-toolbar-inner">
+      <div class="Monitor-logo" id="homeBtn" title="Go Home">
+        <div class="Monitor-logo-mark" aria-hidden="true"></div>
+        <div class="Monitor-logo-text">
+          <strong>Tax Vision</strong>
+          <span>Interactive cards</span>
+        </div>
+      </div>
+      <div class="Monitor-project">
+        <label for="projectSelect">Empire Project</label>
+        <select id="projectSelect" class="Monitor-select">
+          <option>AMP</option>
+          <option>BCMS</option>
+          <option>EXAM</option>
+          <option>TA</option>
+        </select>
+      </div>
+      <div class="Monitor-search">
+        <div class="Monitor-search-icon" aria-hidden="true">🔎</div>
+        <input id="searchInput" class="Monitor-search-input" type="search"
+          placeholder="Search cards, pages, metrics…" />
+      </div>
+      <div class="Instana-controls">
+        <label for="date-from">Date From:</label>
+        <input type="date" id="date-from">
+        <label for="date-to">Date To:</label>
+        <input type="date" id="date-to">
+        <label class="cui-label" for="data-points">Data Points:</label>
+        <input type="number" id="data-points" name="data-points" min="1" max="30" value="7">
+        <button id="runSearch" class="Monitor-search-button" aria-label="Gets data from Instana">Get</button>
+      </div>
+      <div class="Monitor-controls">
+        <div class="Monitor-scale" title="Text size">
+          <button id="scaleDown" class="Monitor-scale-btn" aria-label="Decrease text size">–</button>
+          <div class="Monitor-scale-value" id="scaleValue">100%</div>
+          <button id="scaleUp" class="Monitor-scale-btn" aria-label="Increase text size">+</button>
+        </div>
+        <div class="Monitor-toggle" title="Light/Dark">
+          <span class="Monitor-toggle-label">Theme</span>
+          <div class="Monitor-switch" id="themeSwitch" data-on="true" role="switch" aria-checked="true" tabindex="0">
+          </div>
+        </div>
+        <!-- Favorites button opens modal, does NOT hide toolbar -->
+        <button class="Monitor-favorites-btn" id="Monitor-favorites-btn" aria-label="Favorites" title="Favorites">
+          <span class="Monitor-favorites-star">★</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Monitor rows with size variants -->
+  <main class="Monitor-main" id="main">
+    <!-- Row 1 (medium height) -->
+    <!-- Removed Monitor-row-scrollable to restore original 3-card layout -->
+    <section class="Monitor-row Monitor-row--medium" data-row="1">
+      <div class="Monitor-row-cards" data-row-cards>
+        <!-- Monitor cards -->
+        <article class="Monitor-card" data-card-id="overall-progress">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>E1 → E2 Overall Progress</strong>
+              <span>Placeholder for progress bar / KPI</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">KPI</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Chart / Viz Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="new-pages">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>New Pages Added to E2</strong>
+              <span>Timeline / bubbles (placeholder)</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Trend</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Chart / Viz Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="notifications">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Notifications</strong>
+              <span>Build/job status feed (placeholder)</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Feed</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Content / Feed Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Row 2 (large height) -->
+    <!-- Removed Monitor-row-scrollable to restore original 3-card layout -->
+    <section class="Monitor-row Monitor-row--large" data-row="2">
+      <div class="Monitor-row-cards" data-row-cards>
+        <article class="Monitor-card" data-card-id="pages-remaining">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Empire Pages Remaining</strong>
+              <span>Line chart placeholder</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Chart</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Chart / Viz Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="audit-trail">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Audit Trail Usage</strong>
+              <span>Donut / KPI placeholder</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Chart</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Chart / Viz Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="pending-testing">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Migrations Pending Testing</strong>
+              <span>Bar chart placeholder</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Chart</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Chart / Viz Area</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Row 3 (small height) -->
+    <!-- Removed Monitor-row-scrollable to restore original 3-card layout -->
+    <section class="Monitor-row Monitor-row--small" data-row="3">
+      <div class="Monitor-row-cards" data-row-cards>
+        <article class="Monitor-card" data-card-id="system-health">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>System Health</strong>
+              <span>CPU / MEM / DISK placeholders</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Status</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Mini KPIs / Sparklines</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="network-health">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Network Health</strong>
+              <span>Latency / throughput placeholders</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Status</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Mini KPIs / Sparklines</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+
+        <article class="Monitor-card" data-card-id="custom-slot">
+          <div class="Monitor-card-header">
+            <div class="Monitor-card-title">
+              <strong>Empty Slot</strong>
+              <span>Drop in a future card type</span>
+            </div>
+            <div class="Monitor-card-actions">
+              <span class="Monitor-pill">Slot</span>
+              <div class="Monitor-btn" data-expand title="Expand">⤢</div>
+            </div>
+          </div>
+          <div class="Monitor-card-body">
+            <div class="Monitor-placeholder">Card Content</div>
+          </div>
+          <div class="Monitor-card-footer">
+            <span class="Monitor-grab-hint"><span class="Monitor-dots"></span> Hold to drag</span>
+            <span>Updated: —</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- 1. Toolbar toggle button - fixed to bottom-left -->
+  <button class="Monitor-toolbar-toggle-btn" id="Monitor-toolbar-toggle-btn" aria-label="Toggle toolbar visibility">
+    <span class="Monitor-toolbar-toggle-icon">▲</span>
+  </button>
+
+  <!-- Favorites MODAL (not dropdown) with two sections + preview -->
+  <div class="Monitor-favorites-modal-overlay" id="Monitor-favorites-modal-overlay">
+    <div class="Monitor-favorites-modal">
+      <div class="Monitor-favorites-modal-header">
+        <h3>Favorites</h3>
+        <button class="Monitor-favorites-modal-close" id="Monitor-favorites-modal-close" aria-label="Close">×</button>
+      </div>
+
+      <div class="Monitor-favorites-modal-body">
+        <!-- Left side: Two sections -->
+        <div class="Monitor-favorites-sections">
+          <!-- Section A: Favorite Layouts -->
+          <div class="Monitor-favorites-section">
+            <h4>Favorite Layouts</h4>
+            <ul class="Monitor-favorites-section-list">
+              <li>
+                <button class="Monitor-favorites-item" data-layout="default">
+                  <span class="Monitor-favorites-item-icon">📊</span>
+                  <span class="Monitor-favorites-item-text">Default Layout</span>
+                </button>
+              </li>
+              <li>
+                <button class="Monitor-favorites-item" data-layout="compact">
+                  <span class="Monitor-favorites-item-icon">📋</span>
+                  <span class="Monitor-favorites-item-text">Compact View</span>
+                </button>
+              </li>
+              <li>
+                <button class="Monitor-favorites-item" data-layout="extended">
+                  <span class="Monitor-favorites-item-icon">📈</span>
+                  <span class="Monitor-favorites-item-text">Extended Dashboard</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Section B: Add Favorite Rows -->
+          <div class="Monitor-favorites-section">
+            <h4>Add Favorite Rows</h4>
+            <ul class="Monitor-favorites-section-list">
+              <li>
+                <button class="Monitor-favorites-item" data-add-row="analytics">
+                  <span class="Monitor-favorites-item-icon">➕</span>
+                  <span class="Monitor-favorites-item-text">Analytics Row</span>
+                </button>
+              </li>
+              <li>
+                <button class="Monitor-favorites-item" data-add-row="monitoring">
+                  <span class="Monitor-favorites-item-icon">➕</span>
+                  <span class="Monitor-favorites-item-text">System Monitoring</span>
+                </button>
+              </li>
+              <li>
+                <button class="Monitor-favorites-item" data-add-row="reports">
+                  <span class="Monitor-favorites-item-icon">➕</span>
+                  <span class="Monitor-favorites-item-text">Reports Row</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. Right side: Layout Preview -->
+        <div class="Monitor-favorites-preview">
+          <h4>Layout Preview</h4>
+          <div class="Monitor-favorites-preview-content" id="Monitor-favorites-preview-content">
+            <!-- Preview grid will be generated dynamically -->
+          </div>
+          <div class="Monitor-favorites-preview-info" id="Monitor-favorites-preview-info">
+            <!-- Info text will be generated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="Monitor-favorites-modal-footer">
+        <button class="Monitor-favorites-modal-btn Monitor-favorites-modal-btn--cancel"
+          id="Monitor-favorites-modal-cancel">Cancel</button>
+        <button class="Monitor-favorites-modal-btn Monitor-favorites-modal-btn--apply"
+          id="Monitor-favorites-modal-apply">Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+</div>

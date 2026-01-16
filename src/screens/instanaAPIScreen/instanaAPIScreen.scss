@@ -1,0 +1,195 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgb(62,62,66);
+}
+
+h2 {
+    font-weight: bold;
+    font-size: larger;
+}
+
+p {
+    font-size: large;
+}
+
+.cui-label {
+    color: 	rgb(0,122,204);
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-style: italic;
+}
+
+.sticky-bar {
+    position: sticky;
+    top: 15px;
+    background-color: rgba(30, 30, 30, 0.5);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    text-align: center;
+    padding: 10px;
+    margin-left: 14vw;
+    margin-right: 14vw;
+    z-index: 10;
+    border-radius: 40px;
+}
+
+.loader-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(0, 45, 114, 0.75);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    z-index: 10000;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 0%;
+    aspect-ratio: 1;
+    --c: no-repeat linear-gradient(#87ceeb 0 0);
+    background:
+        var(--c) 0% 50%,
+        var(--c) 50% 50%,
+        var(--c) 100% 50%;
+    background-size: 20% 100%;
+    animation: l1 1s infinite linear;
+}
+
+@keyframes l1 {
+    0% {
+        background-size:
+            20% 100%,
+            20% 100%,
+            20% 100%;
+    }
+
+    33% {
+        background-size:
+            20% 10%,
+            20% 100%,
+            20% 100%;
+    }
+
+    50% {
+        background-size:
+            20% 100%,
+            20% 10%,
+            20% 100%;
+    }
+
+    66% {
+        background-size:
+            20% 100%,
+            20% 100%,
+            20% 10%;
+    }
+
+    100% {
+        background-size:
+            20% 100%,
+            20% 100%,
+            20% 100%;
+    }
+}
+
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+#myDiv {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(37, 37, 38, 0.75);
+    color: rgb(0,122,204);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    padding: 40px;
+    margin: 15px;
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+#date-to,
+#date-from,
+#data-points {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 .4rem .8rem #0005;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}
+
+#submit-button {
+    border: none;
+    background-color: green;
+    box-shadow: 0 .4rem .8rem #0005;
+    color: white;
+    padding: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    background-color: rgb(0, 160, 0);
+}
+
+#submit-button:active {
+    background-color: rgb(0, 80, 0);
+}

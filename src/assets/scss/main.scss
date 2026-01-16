@@ -1,6 +1,84 @@
 @charset "UTF-8";
 /*! bulma.io v1.0.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
+/* Nimbus UI (scoped) */
+#nimbus-json.nimbus-root {
+  white-space: normal !important; /* kill pre/pre-wrap behavior if inherited */
+}
+ 
+#nimbus-json .nimbus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+ 
+/* Responsive: 2 columns if narrow */
+@media (max-width: 1200px) {
+  #nimbus-json .nimbus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+ 
+#nimbus-json .nimbus-card {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 12px;
+  color: #eee;
+  min-height: 140px;
+}
+ 
+#nimbus-json .nimbus-card__title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+ 
+#nimbus-json .nimbus-card__subtitle {
+  opacity: 0.8;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+ 
+#nimbus-json .nimbus-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 24px;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0;
+}
+ 
+#nimbus-json .nimbus-row__label {
+  font-size: 12px;
+  opacity: 0.9;
+}
+ 
+#nimbus-json .nimbus-row__value {
+  text-align: right;
+  font-size: 12px;
+  opacity: 0.9;
+}
+ 
+#nimbus-json .nimbus-row__barwrap {
+  background: #1f2937;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+ 
+#nimbus-json .nimbus-row__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #7aa2ff; /* pick whatever */
+}
+ 
+#nimbus-json .nimbus-empty {
+  opacity: 0.6;
+  font-size: 12px;
+  padding: 10px 0;
+}
+
 :root {
   --bulma-control-radius: var(--bulma-radius);
   --bulma-control-radius-small: var(--bulma-radius-small);
